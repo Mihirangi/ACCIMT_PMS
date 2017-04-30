@@ -1,0 +1,58 @@
+.mceContentBody {
+    font:1em/1.5em georgia,"times new roman",serif;
+    letter-spacing: 0.02em;
+}
+.mceContentBody a{
+    color: #c70008;
+    text-decoration: underline;
+}
+
+/* Floats voor afbeeldingen en media divs (embedding, video player, mp3 player)   */
+.float_right{
+    float: right;
+    margin-left: 10px;
+}
+.float_left{
+    float: left;
+    margin-right: 10px;
+}
+  
+
+/* Example table styles */
+table.default, table.default td {border-collapse: collapse;border: 1px solid #546A83;padding: 4px 10px;}
+table.default tr.even{background: #D0D8E1;}
+table.default tr.first{background: #B4C0CF;}
+table.default td.first{background: #B4C0CF;}
+
+blockquote{
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin: 0 10px 10px 0;
+    background: transparent url(../images/quote_top.png) no-repeat top left;  
+    position:relative;
+}
+blockquote p{
+    background: #CE0912 url(../images/quote_bottom.png) no-repeat bottom right;
+    color: #fff;
+    margin: 0;
+    padding: 27px 15px;
+    font-size: 2em;
+    line-height: 1.2em;
+    position: relative;
+    z-index: -1;
+}
+
+ul.styledlist{
+    border-top: 2px solid #E9E9E9;    
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.styledlist li{ 
+    border-bottom: 2px solid #E9E9E9; 
+    margin: 0;
+    padding: 15px 9px 15px 60px;
+    background: transparent url(../images/list_icon.png) no-repeat 9px 16px;
+    
+}

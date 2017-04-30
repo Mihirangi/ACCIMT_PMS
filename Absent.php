@@ -1,0 +1,196 @@
+<html>
+<head>
+<link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+<title>System Users</title>
+
+<?php
+
+session_start();
+
+if (!isset($_SESSION['login_type']))
+{
+header('Location: lgin.php');
+}
+require_once ("phpfncs/Database.php");
+require_once ("phpfncs/Funcs.php");
+$db =new DBOperations("ttttt");
+$fncs= new FRMOperations();
+?>
+<script language="javascript" src="jss/Js_Funcs.js">
+</script>
+<script language="javascript" src="calendar/calendar.js">
+</script>
+<link href="css/Css_file.css" rel="stylesheet" type="text/css">
+<script>
+function buttonfunction() {
+    var temp=document.getElementById("NewID").value;
+    if (temp=="New Leave Type") {
+        document.getElementById("btnAdd").disabled = false;
+        document.getElementById("btnEdi").disabled = true;
+        document.getElementById("btnDel").disabled = true;
+        document.getElementById("Leave_Type").value = '';
+    }
+    else{
+        document.getElementById("btnAdd").disabled = true;
+        document.getElementById("btnEdi").disabled = false;
+        document.getElementById("btnDel").disabled = false;
+        document.getElementById("Leave_Type").value = temp;
+    }
+}
+</script>
+
+</head>
+	<?php
+	
+	$ToDt=date('y-m-d');
+	$yer=date('y');
+	$mon=date('m');
+	$FromDt= $yer.'-'.$mon.'-01';
+	$EmpNo=""; 
+	if (!empty($_POST))
+	{			
+		$FromDt =$_POST['Frm_Dt'];
+		$ToDt =$_POST['To_Dt'];
+		$EmpNo =trim($_POST['Emp_num']);
+		/*if(isset($_POST['Serch_But']))
+		{
+			if( strlen($lvTyName)>0   ){
+			
+				$result=$db->Exe_Qry("INSERT INTO lv_type_tbl ( Leave_Type_ID,Leave_Type) VALUES ( '$lvTyId','$lvTyName')");
+				
+			}else{	
+			
+				echo '<script>alert("already Added to the system.");</script>';
+			
+			}		
+		}
+
+		else if(isset($_POST['btnEdi'])){ 		
+					$lv1=$_POST['NewID'];
+					$lv2=$_POST['Leave_Type'];
+					
+					$result2=$db->Exe_Qry("SELECT Leave_Type_ID FROM  lv_type_tbl where Leave_Type='$lv1';");
+					$val = $db->Next_Record($result2);
+					$Leave_Type=$val[0];
+					
+					$query =$db->Exe_Qry("Update  lv_type_tbl Set Leave_Type='$lv2' where Leave_Type_ID='$Leave_Type'");
+
+				}
+		
+	
+		else if(isset($_POST['btnDel']))
+		{
+			$LeaveType =$_POST['NewID'];
+			
+			$newresult=$db->Exe_Qry("DELETE FROM  lv_type_tbl WHERE Leave_Type='$LeaveType'");
+		}*/
+		
+	}
+		?>
+	
+	
+	
+<body onLoad="sessSet('Absent.php')" onClick="mytstfunc()">
+<div id="wrapp">
+ <form id="form1" name="form1" method="post" action="">
+  <table align="center" width="95%" id="wrapped2"  border="0" cellpadding="10" cellspacing="1">
+   <caption>
+   <h1><?php //$fncs->HeadingEcho2($_SESSION['login_type']);?> Absent Employees' Details</h1>
+   </caption>
+   <tr>
+    <th>
+    <?php
+   // if ($_SESSION['login_type']=="A")
+	//{?>
+    <table align="center"  border="0" cellpadding="4" cellspacing="1">
+		  <tr>
+			   <th valign="top" scope="row"><div align="left">From Date</div></th>
+			   <th valign="top">:</th>
+			   <td>
+               <?php
+               $fncs->CrtCalender('Frm_Dt',$FromDt,0);
+			   ?>
+			   </td>
+		  </tr>
+          <tr>
+			   <th valign="top" scope="row"><div align="left">To Date</div></th>
+			   <th valign="top">:</th>
+			   <td>
+               <?php
+               $fncs->CrtCalender('To_Dt',$ToDt,0);
+			   ?>
+			   </td>
+		  </tr>
+		  <tr>
+			   <th valign="top" scope="row"><div align="left">Emp Number</div></th>
+			   <th valign="top">:</th>
+			   <td align="left"><input type="text" name="Emp_num" id="Emp_num" value="<?php echo $EmpNo;?>" /></td> 		 
+		  </tr>
+	   </table>
+		  <tr>
+			   <th colspan="3" scope="row"> <table align="center" width="60%" border="0">
+					 <tr>
+                     <th><input name="Serch_But"  type="submit" id="Serch_But" value="Search"></th>
+                     
+						<!--<td width="22%"><div align="left">
+							<input name="btnAdd"  type="submit" id="btnAdd" value="Add"></div>
+						</td>
+						<td width="22%"><div align="center">
+							<input name="btnEdi" disabled type="submit" id="btnEdi" value="Edit" ></div>
+						</td>
+						<td width="22%"><div align="right">
+							<input name="btnDel" disabled type="submit" id="btnDel" value="Delete" ></div>
+						</td>-->
+					 </tr>
+					</table>
+				</th>
+		  </tr>
+     <?php
+     // }?>
+     </th>
+   </tr>
+  </table>
+ </form>  
+  <br/>
+  <br/>
+
+  <table id="wrapped" align="center" cellspacing="3" cellpadding="5" border="0">
+   <tr>
+    <th><table align="center"  border="1" cellpadding="4" cellspacing="1" >
+      <tr>
+			   <th> Employee Numbers</th>
+			   <th> Absent Dates</th>
+					 <?php
+					 if ($EmpNo=="")
+					 {
+						$result2=$db->Exe_Qry("SELECT ab.EmpNo, at.AttDt FROM  absent_tbl ab, attend_dts_tbl at WHERE ab.AttDtId=at.AttDtId AND at.AttDt BETWEEN '$FromDt' AND '$ToDt';");
+					 }
+					 else
+					 {
+						 $result2=$db->Exe_Qry("SELECT ab.EmpNo, at.AttDt FROM  absent_tbl ab, attend_dts_tbl at WHERE ab.AttDtId=at.AttDtId AND at.AttDt BETWEEN '$FromDt' AND '$ToDt' AND ab.EmpNo='$EmpNo';");
+					 }
+						$rows=$db->Row_Count($result2); 
+
+						for($x1=0;$x1<$rows;$x1++)
+						{
+						$uu=$db->Next_Record($result2);	
+						echo '<tr>';
+							echo'<td align="left">';
+							echo $uu['EmpNo'];
+							echo'</td>';
+							echo'<td align="left">';
+							echo $uu['AttDt'];
+							echo'</td>';
+						echo'</tr>';	
+						}
+						?>
+							  </tr>
+
+     </table></th>
+  </table>
+ </form>
+ <br />
+ <br />
+</div>
+</body>
+</html>

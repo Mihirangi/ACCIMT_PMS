@@ -1,0 +1,38 @@
+th{
+vertical-align:top;
+font-size:11pt;
+font-family: Comic Sans MS, Arial,Verdana, Helvetica, sans-serif;
+}
+td{
+vertical-align:top;
+font-size:11pt;
+font-family: Comic Sans MS, Arial, Verdana, Helvetica, sans-serif;
+}
+pre{
+text-align:justify;
+white-space: pre-wrap; /* css-3 */
+white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: -o-pre-wrap; /* Opera 7 */
+word-wrap: break-word;
+font-size:11pt;
+font-family:Comic Sans MS,Times New Roman, Times, serif;
+width:650px;
+}
+p{
+	text-align:justify;
+	font-size:11pt;
+}
+
+pre.hsss { text-align:justify;
+white-space: pre-wrap; /* css-3 */
+white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: -o-pre-wrap; /* Opera 7 */
+word-wrap: break-word;
+width:160px;
+font-family:Comic Sans MS,Times New Roman, Times, serif; }
+
+Caption{
+font-family: Comic Sans MS, Arial,Verdana, Helvetica, sans-serif;
+}
