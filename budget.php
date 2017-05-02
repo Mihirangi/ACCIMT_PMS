@@ -104,7 +104,7 @@ $butOp=false;
 	<form name = "form1" method = "POST" onSubmit="return formvalidate()" action = "">
     <table align="center" width="95%" id="wrapped2"  border="0" cellpadding="10" cellspacing="1">
    <caption>
-      <h1>Budget Details</h1>
+      <h1>Budget Details display</h1>
    </caption>
    <tr>
     <th>
