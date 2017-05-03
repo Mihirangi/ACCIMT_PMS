@@ -165,7 +165,7 @@
                 </tr>
                 
                 <tr>
-                    <td>Minute</td>
+                    <td>Minute Description</td>
                     <td>:</td>
                     <td><textarea name="minute" id="minute" cols="20" rows="4"></textarea></td>
                 </tr>
