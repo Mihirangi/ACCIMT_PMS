@@ -150,9 +150,13 @@ class FRMOperations
 				  <ul>
 				  <li><a href="save.php" onClick="scrollpg()" target="datafrm">Upload</a></li>
 				  <li><a href="test.php" onClick="scrollpg()" target="datafrm">View</a></li>
+			
 				  
 				  </ul></li>
-			  <li><a href="appoint_tec.php" onClick="scrollpg()" target="datafrm">Appoint TEC</a></li>
+				  
+			        <li><a href="appoint_tec.php" onClick="scrollpg()" target="datafrm">Appoint TEC</a></li>
+			        
+			        <li><a href="spec_main.php" onClick="scrollpg()" target="datafrm">Add Main Specification</a></li>
 			  
 			  
 			  
