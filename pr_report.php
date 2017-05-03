@@ -100,7 +100,7 @@ $fncs= new FRMOperations();
                         <tr>
                             <td>4) If yes, justify the purchase similar equipment: </td>
                         </tr>
-                        <t.0r>
+                        <tr>
                             <td>5) How do you fulfill your current requirement?: </td>
                         </tr>
                         <tr>
