@@ -299,7 +299,7 @@ if (isset($_POST['btnDel']))
  <form id="form1" name="form1" method="post" action="" >
   <table id="wrapped2" align="center" width="136%"  border="0" cellpadding="10" cellspacing="1">
    <caption>
-   <h1>Purchase Requisition</h1>
+   <h1>Purchase Requisition123</h1>
    </caption>
    <tr>
     <td><table border="0" align="center">
