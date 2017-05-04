@@ -68,7 +68,7 @@ function myFunction() {
 <table align="center" class="searchResults">
     
 		<table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
-		  <caption><h1>Add Procument Method</h1></caption>
+		  <caption><h1>Add Procument Method jjjjjjjjjjjjjjj</h1></caption>
 				<tr>
 				<th>    
 				<table align="center"  border="0" cellpadding="4" cellspacing="1" style="color:#000000">       
