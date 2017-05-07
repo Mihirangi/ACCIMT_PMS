@@ -75,51 +75,80 @@ $butOp=false;
 					<table align="center"  border="0" cellpadding="4" cellspacing="1" style="color:#000000">		
                 
 				<tr>
-					<th width="127" height="30" valign="top" scope="row"><div align="left">Name of supplier</div></th>
+				    <th width="127" height="30" valign="top" scope="row"><div align="left">Name of supplier</div></th>
 					<th width="4" rowspan="8" valign="top">&nbsp;</th>
 					<td width="190" align="left"><input name="name" type="text" id="name" autocomplete="off" value="<?php echo $row[1]?>"></td>
 				</tr>
 				<tr>
 				  <th height="27" valign="top" scope="row"><div align="left">Address</div></th>
-				  <td align="left"><input name="add" type="text" id="add" autocomplete="off" value="<?php echo $row[2]?>"></td>
-				  </tr>
+				  <td align="left"><input type="text" name="addr" id="addr" cols="21" rows="4" value="<?php echo $row[2]?>"></td>
+				</tr>
 				<tr>
-				  <th height="27" valign="top" scope="row"><div align="left">Telephone</div></th>
-				  <td align="left"><input name="tel" type="text" id="tel" cols="22" rows="4" value="<?php echo $row[3]?>"></td>
-				  </tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Telephone No 1</div></th>
+				  <td align="left"><input name="tel1" type="text" id="tel1" cols="22" rows="4" value="<?php echo $row[3]?>"></td>
+                  <td>
+				  <th height="27" valign="top" scope="row"><div align="left">Contact Person</div></th>
+				  <td align="left"><input name="contact1" type="text" id="contact1" cols="22" rows="4" value="<?php echo $row[4]?>"></td>
+                  </td>
+				</tr>
+                <tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Telephone No 2</div></th>
+				  <td align="left"><input name="tel2" type="text" id="tel2" cols="22" rows="4" value="<?php echo $row[5]?>"></td>
+                  <td>
+				  <th height="27" valign="top" scope="row"><div align="left">Contact Person</div></th>
+				  <td align="left"><input name="contact2" type="text" id="contact2" cols="22" rows="4" value="<?php echo $row[6]?>"></td>
+                  </td>
+				</tr>
+                <tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Telephone No 3</div></th>
+				  <td align="left"><input name="tel3" type="text" id="tel3" cols="22" rows="4" value="<?php echo $row[7]?>"></td>
+                  <td>
+				  <th height="27" valign="top" scope="row"><div align="left">Contact Person</div></th>
+				  <td align="left"><input name="contact3" type="text" id="contact3" cols="22" rows="4" value="<?php echo $row[8]?>"></td>
+                  </td>
+				</tr>
 				<tr>
-				  <th height="27" valign="top" scope="row"><div align="left">Fax</div></th>
-				  <td align="left"><input name="fax" type="text" id="fax" autocomplete="off" value="<?php echo $row[4]?>"></td>
-				  </tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Fax 1</div></th>
+				  <td align="left"><input name="fax1" type="text" id="fax1" autocomplete="off" value="<?php echo $row[9]?>"></td>
+				</tr>
+                <tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Fax 2</div></th>
+				  <td align="left"><input name="fax2" type="text" id="fax2" autocomplete="off" value="<?php echo $row[10]?>"></td>
+				</tr>
 				<tr>
-				  <th height="27" valign="top" scope="row"><div align="left">Credit</div></th>
-                  
-				  <td align="left"><input name="crdt" type="text" id="crdt" autocomplete="off" value="<?php echo $row[5]?>"></td>
-                  
-				  </tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Period of credit</div></th>
+				  <td align="left"><input name="crdt" type="text" id="crdt" autocomplete="off" value="<?php echo $row[11]?>"></td>  
+				</tr>
 				<tr>
 				  <th height="27" valign="top" scope="row"><div align="left">Value of credit</div></th>
-				  <td align="left"><input name="vcrdt" type="text" id="vcrdt" autocomplete="off" value="<?php echo $row[6]?>"></td>
-				  </tr>
-				<tr>
-				  <th height="27" valign="top" scope="row"><div align="left">File Ref</div></th>
-				  <td align="left"><input name="file_ref" type="text" id="file_ref" autocomplete="off" value="<?php echo $row[7]?>"></td>
-				  </tr>
-                  
-                  <tr>
+                  <td></td>
+				  <td align="left"><input name="vcrdt" type="text" id="vcrdt" autocomplete="off" value="<?php echo $row[12]?>"></td>
+				</tr>
+                <tr>
 				  <th height="27" valign="top" scope="row"><div align="left">Web Site</div></th>
-				  <td align="left"><input name="web" type="text" id="web" autocomplete="off" value="<?php echo $row[8]?>"></td>
-				  </tr>
-                  <tr>
+                  <td></td>
+				  <td align="left"><input name="web" type="text" id="web" autocomplete="off" value="<?php echo $row[14]?>"></td>
+				</tr>
+                <tr>
 				  <th height="27" valign="top" scope="row"><div align="left">E-mail</div></th>
                   <td></td>
-				  <td align="left"><input name="email" type="text" id="email" autocomplete="off" value="<?php echo $row[9]?>"></td>
-				  </tr>
+				  <td align="left"><input name="email" type="text" id="email" autocomplete="off" value="<?php echo $row[15]?>"></td>
+				</tr>
+                <tr>
+				  <th height="27" valign="top" scope="row"><div align="left">File Ref</div></th>
+                  <td></td>
+				  <td align="left"><input name="file_ref" type="text" id="file_ref" autocomplete="off" value="<?php echo $row[13]?>"></td>
+				</tr>
+                <tr>
+				  <th height="27" valign="top" scope="row"><div align="left">Reciept No</div></th>
+                  <td></td>
+				  <td align="left"><input name="receipt" type="text" id="receipt" autocomplete="off" value="<?php echo $row[16]?>"></td>
+				</tr>
                  
 
                   
 				</table>
-                 <input type="submit" name="save" value="Save">
+                 <input type="submit" name="save" value="Edit">
                  
 	</form>
     

@@ -126,7 +126,7 @@ class FRMOperations
 			  <li><span class="dir">Purchase Requisition</span>
 			  <ul>
 			  <li><a href="pr_request.php" onClick="scrollpg()" target="datafrm">Purchase Requisition</a></li>
-              <li><a href="pr_report.php" onClick="scrollpg()" target="datafrm">PR report</a></li>
+              <li><a href="pr_report1.php" onClick="scrollpg()" target="datafrm">PR report</a></li>
               <li><a href="budget_request2.php" onClick="scrollpg()" target="datafrm">New Budget Request</a></li>
 			  <li><a href="budget_requestalt.php" onClick="scrollpg()" target="datafrm">Alternative Budget Request</a></li>
               <li><a href="budget_transfer.php" onClick="scrollpg()" target="datafrm">Alternative Budget Confirm</a></li>
@@ -153,8 +153,14 @@ class FRMOperations
 				  
 				  </ul></li>
 			  <li><a href="appoint_tec.php" onClick="scrollpg()" target="datafrm">Appoint TEC</a></li>
-			  
-			  
+              <li><span class="dir">Specification</span>
+				<ul>
+				<li><a href="spec.php" onClick="scrollpg()" target="datafrm">Add Main Specification</a></li>
+			    <li><a href="sub_spec.php" onClick="scrollpg()" target="datafrm">Add Specification Equipment</a></li>
+              	<li><a href="spec_requirement.php" onClick="scrollpg()" target="datafrm">Add Specification requirement</a></li>
+				<li><a href="create_spec.php" onClick="scrollpg()" target="datafrm">Create Specification </a></li>
+			  	<li><a href="spec_report.php" onClick="scrollpg()" target="datafrm">Specification Report</a></li>
+			  	</ul></li>
 			  
 			  
 			  </ul>

@@ -44,57 +44,104 @@ require_once ("phpfncs/Database.php");
 require_once ("phpfncs/Funcs.php");
 $db = new DBOperations("misaccdb");
 $fncs= new FRMOperations();
-?>
+
     
+if(isset ($_POST['code']) && ($_POST['code'] != "new" )){
+    $code=$_POST['code']; 
+}
+  
+?>
+
 </head> 
 
     
-<body>
+<body >
+    
+  <script>
+    function onChangeId() {
+        var selectedId = $("#myId").val();
+        $("#myName").val(selectedId);
+    }
+    function myFunction() {
+        var selectedName = $("#myName").val();
+        $("#myId").val(selectedName);
+    }
+</script>
     
 <div id="wrapp">
-    <table width="60%" height="100"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
-        <caption><h1>Report</h1></caption>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                
-                <th>Pr_No</th>
-                <td>:</td>
-                <td>
-                    <?php
-                        $values = mysql_query("SELECT * FROM pc_pr_dtls_tbl");
-                        echo"<select name='pr' onChange='this.form.submit()' id='pr'>";
-                        echo "<option >--Select PR No--</option>";
+<form method="post" action="" class="plain" id="form1" name="form1">
+<table align="center" class="searchResults">
+		<table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
+		  <caption><h1>PR Report</h1></caption>
+				<tr>
+					<th> 
+					<table align="center"  border="0" cellpadding="4" cellspacing="1" style="color:#000000">
+                     <div class="combobox">
+				       <tr>
+					   <th valign="top" scope="row">
+                            <div align="left">PR No</div>
+                        </th>
+					       <th valign="top">:</th> 
+                            <!--<div class="col-md-4">-->
+							<td align="left">
+                                
+				            <?php
+                                $values = mysql_query("SELECT * FROM pc_pr_dtls_tbl");
+                                echo"<select name='code' onChange='this.form.submit()' id='myId'>";
+                                echo "<option >--Select PR No--</option>";
 
-                        while ($row = mysql_fetch_array($values)) {
-                            $setSelect = "";
-                            echo "<option value='$row[1]'>$row[1]</option>";
-                        }
-                        echo"</select>";
-                    ?>
-                </td>
-            </tr>
-            
-            <table border="0" align="center"> 
-            </table>
-            <br/><br/>
-    </table>
+                                while ($row = mysql_fetch_array($values)) {
+                                    $setSelect = "";
+                                    echo "<option value='$row[1]'>$row[1]</option>";
+                                }
+                                echo"</select>";
+                            ?>
+                        </td>
+                        
+                        </tr>
+                         <script>
+                            
+				            document.getElementById('myId').value="<?php echo $code;?>";
+                            if(document.getElementById('myId').value!="<?php echo $code;?>" || document.getElementById('myId').value==""){
+                                document.getElementById('myId').value="new";
+                            }
+                         </script>
+				</div>
+			<tr ></tr>
+            <br/>
     
+    
+               </table>
+              </th>
+             </tr>	
+    </table>
+   <br/>
+    
+</table>
+
 <form method="post" action="" class="plain" id="form1" name="form1">
 <table align="center" class="searchResults">
 
-    <table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
-
-            <tr>
-            <th> 
-                <table align="center"  border="0" cellpadding="4" cellspacing="1" style="color:#000000">
-                <div class="combobox">
-                    <tr>
-                    <textarea class="t2" name="print_area" id="print_area" cols="45" rows="30">
+<table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
+<tr>
+    <th> 
+    <table align="center"  border="0" cellpadding="4" cellspacing="1" style="color:#000000">
+    <div class="combobox">
+    <tr>
+    
+    <textarea class="t2" name="print_area" id="print_area" cols="45" rows="30">
+        
+        <?php 
+            $code=$_POST['code'];
+            //echo $code; 
+        ?>
+        
                     <table>
+                        
+                        <?php
+                             $query1=mysql_query("SELECT * FROM pc_pr_dtls_tbl WHERE pr_no = '$code'");
+                             $row = mysql_fetch_array($query1);
+                          ?>
                         
                         <tr>
                             <th>Arthur C Clarke Institute for Modern Technologies<br/><u>PROCUREMENT REQUISITION FOR CAPITAL GOODS/ WORKS/ SERVICES</u></th>
@@ -103,36 +150,36 @@ $fncs= new FRMOperations();
                             <td></td>
                         </tr>
                         <tr>
-                            <td><b>Name of the item and quantity: </b></td>
+                            <td><b>Name of the item and quantity: </b><?php echo $row[12];?> & <?php echo $row[8];?></td>
                         </tr>
                         <tr>
                             <td>(If you request computers or office equippment please attached committee recommendation)</td>
                         </tr>
                         <tr>
-                            <td><b>Use:</b> Individual/Divisional/Project: </td>
+                            <td><b>Use:</b> Individual/Divisional/Project: <?php echo $row[29];?></td>
                         </tr>
                         <tr>
                             <td>Project Name (if applicable): </td>
                         </tr>
                         <tr>
                             <td>
-                                1) Name of Applicant: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Division: 
+                                1) Name of Applicant: <?php echo $row[5];?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Division: 
                             </td>
                         </tr>
                         <tr>
-                            <td>2) Brief Description of the Usage: (Specification/BOQ/Drawings are enclosed herewith): </td>
+                            <td>2) Brief Description of the Usage: (Specification/BOQ/Drawings are enclosed herewith): <?php echo $row[10];?> </td>
                         </tr>
                         <tr>
                             <td>3) Indicate whether similar item available in the Institute/Division/Personal use:  &nbsp;Yes/No</td>
                         </tr>
                         <tr>
-                            <td>4) If yes, justify the purchase similar equipment: </td>
+                            <td>4) If yes, justify the purchase similar equipment: <?php echo $row[19];?></td>
                         </tr>
                         <tr>
-                            <td>5) How do you fulfill your current requirement?: </td>
+                            <td>5) How do you fulfill your current requirement?: <?php echo $row[30];?></td>
                         </tr>
                         <tr>
-                            <td>6) Estimated value:Rs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Budgeted amount Rs:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Budgeted year:</td>
+                            <td>6) Estimated value:Rs. <?php echo $row[13];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Budgeted amount Rs: <?php echo $row[12];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Budgeted year:</td>
                         </tr>
                         <tr>
                             <td>7) Budget code: </td>
@@ -175,17 +222,6 @@ $fncs= new FRMOperations();
                         </tr>
                     </table>
                     </textarea>
-                    </tr>
-                    
-                </div>            
-                </table>
-            </th>
-            </tr>
-    </table>
-   <br/>
-    
-</table>
-
  </form>
 </div>
 </body>
