@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 25, 2017 at 05:27 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Host: 127.0.0.1
+-- Generation Time: May 07, 2017 at 05:19 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,13 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `misaccdb`
 --
-CREATE DATABASE IF NOT EXISTS `misaccdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `misaccdb`;
 
 -- --------------------------------------------------------
 
@@ -28,12 +26,11 @@ USE `misaccdb`;
 -- Table structure for table `com_division`
 --
 
-CREATE TABLE IF NOT EXISTS `com_division` (
-  `div_id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `com_division` (
+  `div_id` int(5) NOT NULL,
   `Mdiv_code` varchar(10) NOT NULL,
-  `Tdiv_code` varchar(10) NOT NULL,
-  PRIMARY KEY (`div_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+  `Tdiv_code` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `com_division`
@@ -67,12 +64,11 @@ INSERT INTO `com_division` (`div_id`, `Mdiv_code`, `Tdiv_code`) VALUES
 -- Table structure for table `deny_projects`
 --
 
-CREATE TABLE IF NOT EXISTS `deny_projects` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deny_projects` (
+  `id` int(11) NOT NULL,
   `p_code` varchar(20) NOT NULL,
-  `reason` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `reason` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -80,11 +76,10 @@ CREATE TABLE IF NOT EXISTS `deny_projects` (
 -- Table structure for table `designation_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `designation_tbl` (
-  `DesigCode` int(5) NOT NULL AUTO_INCREMENT,
-  `Designation` varchar(150) NOT NULL,
-  PRIMARY KEY (`DesigCode`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1002 ;
+CREATE TABLE `designation_tbl` (
+  `DesigCode` int(5) NOT NULL,
+  `Designation` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `designation_tbl`
@@ -189,20 +184,19 @@ INSERT INTO `designation_tbl` (`DesigCode`, `Designation`) VALUES
 -- Table structure for table `division_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `division_tbl` (
-  `DivisionCode` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `division_tbl` (
+  `DivisionCode` int(5) NOT NULL,
   `Division` varchar(150) DEFAULT NULL,
   `sh_code` varchar(5) NOT NULL,
-  `category` char(1) NOT NULL,
-  PRIMARY KEY (`DivisionCode`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+  `category` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `division_tbl`
 --
 
 INSERT INTO `division_tbl` (`DivisionCode`, `Division`, `sh_code`, `category`) VALUES
-(1, 'Chairman''s Division', 'CHD', ''),
+(1, 'Chairman\'s Division', 'CHD', ''),
 (2, 'Director Division', 'DIR', ''),
 (3, 'Admin Division', 'ADM', ''),
 (4, 'Finance Division', 'FIN', ''),
@@ -225,7 +219,7 @@ INSERT INTO `division_tbl` (`DivisionCode`, `Division`, `sh_code`, `category`) V
 -- Table structure for table `emp_details_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `emp_details_tbl` (
+CREATE TABLE `emp_details_tbl` (
   `EmpNo` int(10) NOT NULL,
   `tec_member` varchar(10) NOT NULL,
   `Title` varchar(10) DEFAULT NULL,
@@ -240,12 +234,7 @@ CREATE TABLE IF NOT EXISTS `emp_details_tbl` (
   `DesigCode` int(5) DEFAULT NULL,
   `EmpTypeCode` int(2) DEFAULT NULL,
   `CategoryCode` int(3) DEFAULT NULL,
-  `RetirementDT` date DEFAULT NULL,
-  PRIMARY KEY (`EmpNo`),
-  KEY `DivisionCode` (`DivisionCode`),
-  KEY `DesigCode` (`DesigCode`),
-  KEY `EmpTypeCode` (`EmpTypeCode`),
-  KEY `CategoryCode` (`CategoryCode`)
+  `RetirementDT` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -412,13 +401,12 @@ INSERT INTO `emp_details_tbl` (`EmpNo`, `tec_member`, `Title`, `Fullname`, `NICN
 -- Table structure for table `hr_desig_cadre`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_desig_cadre` (
+CREATE TABLE `hr_desig_cadre` (
   `DesigCode` int(11) NOT NULL,
   `appcp_t` int(11) DEFAULT NULL,
   `appcp_a` int(11) DEFAULT NULL,
   `extcp_t` int(11) DEFAULT NULL,
-  `extcp_a` int(11) DEFAULT NULL,
-  PRIMARY KEY (`DesigCode`)
+  `extcp_a` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -562,20 +550,19 @@ INSERT INTO `hr_desig_cadre` (`DesigCode`, `appcp_t`, `appcp_a`, `extcp_t`, `ext
 -- Table structure for table `hr_division_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_division_tbl` (
-  `DivisionCode` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_division_tbl` (
+  `DivisionCode` int(5) NOT NULL,
   `Division` varchar(150) DEFAULT NULL,
   `sh_code` varchar(5) NOT NULL,
-  `category` varchar(10) NOT NULL,
-  PRIMARY KEY (`DivisionCode`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+  `category` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `hr_division_tbl`
 --
 
 INSERT INTO `hr_division_tbl` (`DivisionCode`, `Division`, `sh_code`, `category`) VALUES
-(1, 'Chairman''s Division', 'CHD', 'Main'),
+(1, 'Chairman\'s Division', 'CHD', 'Main'),
 (2, 'Director Division', 'DIR', 'Main'),
 (3, 'Admin Division', 'ADM', 'Main'),
 (4, 'Finance Division', 'FIN', 'Main'),
@@ -601,14 +588,13 @@ INSERT INTO `hr_division_tbl` (`DivisionCode`, `Division`, `sh_code`, `category`
 -- Table structure for table `hr_login_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_login_tbl` (
-  `user_id` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_login_tbl` (
+  `user_id` int(3) NOT NULL,
   `User_Name` varchar(15) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Type` varchar(1) NOT NULL,
-  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=129 ;
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_login_tbl`
@@ -733,8 +719,8 @@ INSERT INTO `hr_login_tbl` (`user_id`, `User_Name`, `Password`, `Type`, `updated
 -- Table structure for table `hr_official_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_official_details` (
-  `EmpNo` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_official_details` (
+  `EmpNo` int(11) NOT NULL,
   `DateofAppoinment` date DEFAULT NULL,
   `DivisionCode` int(11) DEFAULT NULL,
   `Category` varchar(20) DEFAULT NULL,
@@ -743,11 +729,8 @@ CREATE TABLE IF NOT EXISTS `hr_official_details` (
   `ProbationPeriod` varchar(255) DEFAULT NULL,
   `IncrementDate` date DEFAULT NULL,
   `Resignation` date DEFAULT NULL,
-  `emp_active` char(1) DEFAULT NULL,
-  PRIMARY KEY (`EmpNo`),
-  KEY `DivisionCode` (`DivisionCode`),
-  KEY `DesigCode` (`DesigCode`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=303 ;
+  `emp_active` char(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hr_official_details`
@@ -867,7 +850,7 @@ INSERT INTO `hr_official_details` (`EmpNo`, `DateofAppoinment`, `DivisionCode`, 
 -- Table structure for table `hr_personal_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_personal_details` (
+CREATE TABLE `hr_personal_details` (
   `EmpNo` int(11) NOT NULL,
   `Title` varchar(10) DEFAULT NULL,
   `Surname` varchar(50) DEFAULT NULL,
@@ -885,8 +868,7 @@ CREATE TABLE IF NOT EXISTS `hr_personal_details` (
   `OfficeCnNum` varchar(20) DEFAULT NULL,
   `PrsnlCnNum` varchar(20) DEFAULT NULL,
   `Email` varchar(100) DEFAULT NULL,
-  `Fullname` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`EmpNo`)
+  `Fullname` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1006,8 +988,8 @@ INSERT INTO `hr_personal_details` (`EmpNo`, `Title`, `Surname`, `Initials`, `Nam
 -- Table structure for table `hr_projects`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_projects` (
-  `serial_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_projects` (
+  `serial_no` int(11) NOT NULL,
   `year` int(4) NOT NULL,
   `div_code` int(11) NOT NULL,
   `pt_code` int(11) NOT NULL,
@@ -1021,12 +1003,8 @@ CREATE TABLE IF NOT EXISTS `hr_projects` (
   `cname` varchar(50) NOT NULL,
   `confirm` varchar(1) NOT NULL DEFAULT 'n',
   `sk_code` varchar(15) NOT NULL,
-  `p_close` varchar(1) NOT NULL DEFAULT 'n',
-  PRIMARY KEY (`serial_no`),
-  UNIQUE KEY `code` (`code`),
-  KEY `pt_code` (`pt_code`),
-  KEY `div_code` (`div_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+  `p_close` varchar(1) NOT NULL DEFAULT 'n'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_projects`
@@ -1070,15 +1048,14 @@ INSERT INTO `hr_projects` (`serial_no`, `year`, `div_code`, `pt_code`, `descript
 -- Table structure for table `hr_project_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_project_details` (
+CREATE TABLE `hr_project_details` (
   `serial_no` int(11) NOT NULL,
   `pname` varchar(30) NOT NULL,
   `apnumber` int(11) NOT NULL,
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `ptype` varchar(20) NOT NULL,
-  `cname` varchar(50) NOT NULL,
-  PRIMARY KEY (`serial_no`)
+  `cname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1096,12 +1073,11 @@ INSERT INTO `hr_project_details` (`serial_no`, `pname`, `apnumber`, `startdate`,
 -- Table structure for table `hr_project_types`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_project_types` (
-  `pt_code` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_project_types` (
+  `pt_code` int(11) NOT NULL,
   `pt_short_des` varchar(50) NOT NULL,
-  `pt_description` varchar(50) NOT NULL,
-  PRIMARY KEY (`pt_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `pt_description` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_project_types`
@@ -1123,10 +1099,9 @@ INSERT INTO `hr_project_types` (`pt_code`, `pt_short_des`, `pt_description`) VAL
 -- Table structure for table `hr_salary`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_salary` (
+CREATE TABLE `hr_salary` (
   `SalaryCode` varchar(50) NOT NULL DEFAULT '',
-  `SalaryScale` varchar(100) NOT NULL,
-  PRIMARY KEY (`SalaryCode`)
+  `SalaryScale` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1156,7 +1131,7 @@ INSERT INTO `hr_salary` (`SalaryCode`, `SalaryScale`) VALUES
 -- Table structure for table `hr_salary_all_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_salary_all_details` (
+CREATE TABLE `hr_salary_all_details` (
   `EmpNo` int(11) NOT NULL,
   `CurrentSalary` int(11) NOT NULL,
   `SalaryAfterIncrement` int(11) NOT NULL,
@@ -1582,14 +1557,13 @@ INSERT INTO `hr_salary_all_details` (`EmpNo`, `CurrentSalary`, `SalaryAfterIncre
 -- Table structure for table `hr_salary_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_salary_details` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_salary_details` (
+  `Id` int(11) NOT NULL,
   `SalaryCode` varchar(50) NOT NULL,
   `Grade` varchar(100) NOT NULL,
   `InitialValue` int(11) NOT NULL,
-  `InitialStep` int(11) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+  `InitialStep` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_salary_details`
@@ -1634,15 +1608,14 @@ INSERT INTO `hr_salary_details` (`Id`, `SalaryCode`, `Grade`, `InitialValue`, `I
 -- Table structure for table `hr_salary_scale_details`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_salary_scale_details` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_salary_scale_details` (
+  `Id` int(11) NOT NULL,
   `SalaryCode` varchar(50) NOT NULL,
   `Grade` int(2) NOT NULL,
   `IncrementYears` int(11) NOT NULL,
   `Amount` int(11) NOT NULL,
-  `Order` int(11) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+  `Order` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_salary_scale_details`
@@ -1693,12 +1666,11 @@ INSERT INTO `hr_salary_scale_details` (`Id`, `SalaryCode`, `Grade`, `IncrementYe
 -- Table structure for table `hr_stores_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_stores_tbl` (
-  `st_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hr_stores_tbl` (
+  `st_id` int(11) NOT NULL,
   `serial_no` int(11) NOT NULL,
-  `st_code` varchar(15) NOT NULL,
-  PRIMARY KEY (`st_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `st_code` varchar(15) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hr_stores_tbl`
@@ -1715,7 +1687,7 @@ INSERT INTO `hr_stores_tbl` (`st_id`, `serial_no`, `st_code`) VALUES
 -- Table structure for table `hr_temp_salary_info`
 --
 
-CREATE TABLE IF NOT EXISTS `hr_temp_salary_info` (
+CREATE TABLE `hr_temp_salary_info` (
   `EmpNo` int(11) NOT NULL,
   `Order` int(11) NOT NULL,
   `PreparedDate` date NOT NULL,
@@ -2496,14 +2468,13 @@ INSERT INTO `hr_temp_salary_info` (`EmpNo`, `Order`, `PreparedDate`, `NameFull`,
 -- Table structure for table `login_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `login_tbl` (
-  `user_id` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `login_tbl` (
+  `user_id` int(3) NOT NULL,
   `User_Name` varchar(15) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Type` varchar(1) NOT NULL,
-  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=129 ;
+  `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login_tbl`
@@ -2628,14 +2599,13 @@ INSERT INTO `login_tbl` (`user_id`, `User_Name`, `Password`, `Type`, `updatedate
 -- Table structure for table `login_tbl_leave`
 --
 
-CREATE TABLE IF NOT EXISTS `login_tbl_leave` (
+CREATE TABLE `login_tbl_leave` (
   `Emp_No` int(11) NOT NULL,
   `Designation` varchar(25) NOT NULL,
   `Division` varchar(25) NOT NULL,
   `category` varchar(25) NOT NULL,
   `Password` text NOT NULL,
-  `Emp_Typep` varchar(3) NOT NULL,
-  PRIMARY KEY (`Emp_No`)
+  `Emp_Typep` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2747,12 +2717,11 @@ INSERT INTO `login_tbl_leave` (`Emp_No`, `Designation`, `Division`, `category`, 
 -- Table structure for table `main_sub_division`
 --
 
-CREATE TABLE IF NOT EXISTS `main_sub_division` (
-  `div_id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `main_sub_division` (
+  `div_id` int(5) NOT NULL,
   `main_div_code` varchar(10) NOT NULL,
-  `child_div_code` int(10) NOT NULL,
-  PRIMARY KEY (`div_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `child_div_code` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `main_sub_division`
@@ -2783,11 +2752,10 @@ INSERT INTO `main_sub_division` (`div_id`, `main_div_code`, `child_div_code`) VA
 -- Table structure for table `pc_action_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_action_tbl` (
-  `action_id` int(5) NOT NULL AUTO_INCREMENT,
-  `action_name` varchar(10) NOT NULL,
-  PRIMARY KEY (`action_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+CREATE TABLE `pc_action_tbl` (
+  `action_id` int(5) NOT NULL,
+  `action_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_action_tbl`
@@ -2807,13 +2775,11 @@ INSERT INTO `pc_action_tbl` (`action_id`, `action_name`) VALUES
 -- Table structure for table `pc_appoint_tec`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_appoint_tec` (
+CREATE TABLE `pc_appoint_tec` (
   `File_no` varchar(25) NOT NULL,
   `EmpNo` int(10) NOT NULL,
   `type_id` int(1) NOT NULL,
-  `Approve` varchar(1) NOT NULL,
-  PRIMARY KEY (`File_no`),
-  UNIQUE KEY `File_no` (`File_no`)
+  `Approve` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2831,15 +2797,14 @@ INSERT INTO `pc_appoint_tec` (`File_no`, `EmpNo`, `type_id`, `Approve`) VALUES
 -- Table structure for table `pc_app_tec`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_app_tec` (
-  `pr_app_no` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_app_tec` (
+  `pr_app_no` int(50) NOT NULL,
   `file_no` int(50) NOT NULL,
   `description` varchar(100) NOT NULL,
   `emp_no` int(50) NOT NULL,
   `emp_name` varchar(100) NOT NULL,
-  `emp_type` varchar(50) NOT NULL,
-  PRIMARY KEY (`pr_app_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `emp_type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_app_tec`
@@ -2856,12 +2821,11 @@ INSERT INTO `pc_app_tec` (`pr_app_no`, `file_no`, `description`, `emp_no`, `emp_
 -- Table structure for table `pc_bid_doc`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_bid_doc` (
-  `doc_id` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_bid_doc` (
+  `doc_id` int(20) NOT NULL,
   `file_no` varchar(50) NOT NULL,
-  `document` longblob NOT NULL,
-  PRIMARY KEY (`doc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `document` longblob NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2869,13 +2833,12 @@ CREATE TABLE IF NOT EXISTS `pc_bid_doc` (
 -- Table structure for table `pc_budget_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_budget_tbl` (
-  `budg_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_budget_tbl` (
+  `budg_no` int(11) NOT NULL,
   `Budg_descrip` varchar(50) NOT NULL,
   `budg_code` varchar(20) NOT NULL,
-  `short_descrip` varchar(10) NOT NULL,
-  PRIMARY KEY (`budg_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `short_descrip` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_budget_tbl`
@@ -2897,8 +2860,8 @@ INSERT INTO `pc_budget_tbl` (`budg_no`, `Budg_descrip`, `budg_code`, `short_desc
 -- Table structure for table `pc_bud_req_hod`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_bud_req_hod` (
-  `total_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_bud_req_hod` (
+  `total_id` int(11) NOT NULL,
   `bud_year` int(4) NOT NULL,
   `bud_code` varchar(20) NOT NULL,
   `approved` char(1) NOT NULL,
@@ -2909,9 +2872,8 @@ CREATE TABLE IF NOT EXISTS `pc_bud_req_hod` (
   `appd_DG` varchar(2) NOT NULL,
   `DG_appdtotal` varchar(10) NOT NULL,
   `appd_finance` varchar(1) NOT NULL,
-  `appd_totalfinance` float NOT NULL,
-  PRIMARY KEY (`total_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+  `appd_totalfinance` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_bud_req_hod`
@@ -2955,8 +2917,8 @@ INSERT INTO `pc_bud_req_hod` (`total_id`, `bud_year`, `bud_code`, `approved`, `t
 -- Table structure for table `pc_bud_req_user`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_bud_req_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_bud_req_user` (
+  `id` int(11) NOT NULL,
   `br_no` int(10) NOT NULL,
   `user` int(11) NOT NULL,
   `equ_detail` text NOT NULL,
@@ -2977,9 +2939,8 @@ CREATE TABLE IF NOT EXISTS `pc_bud_req_user` (
   `value_DG` double NOT NULL,
   `balance` double NOT NULL,
   `value_fin` double NOT NULL,
-  `status` varchar(1) NOT NULL DEFAULT 'n',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+  `status` varchar(1) NOT NULL DEFAULT 'n'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_bud_req_user`
@@ -3067,8 +3028,8 @@ INSERT INTO `pc_bud_req_user` (`id`, `br_no`, `user`, `equ_detail`, `purpose`, `
 -- Table structure for table `pc_bud_req_user_old`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_bud_req_user_old` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_bud_req_user_old` (
+  `id` int(11) NOT NULL,
   `pr_no` int(10) NOT NULL,
   `user` int(11) NOT NULL,
   `equ_detail` text NOT NULL,
@@ -3080,9 +3041,8 @@ CREATE TABLE IF NOT EXISTS `pc_bud_req_user_old` (
   `req_date` date NOT NULL,
   `bud_year` int(4) NOT NULL,
   `bud_code` text NOT NULL,
-  `approved` char(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+  `approved` char(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_bud_req_user_old`
@@ -3116,13 +3076,12 @@ INSERT INTO `pc_bud_req_user_old` (`id`, `pr_no`, `user`, `equ_detail`, `purpose
 -- Table structure for table `pc_confirm_action`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_confirm_action` (
-  `confirm_id` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_confirm_action` (
+  `confirm_id` int(4) NOT NULL,
   `file_no` varchar(10) NOT NULL,
   `action_from` varchar(10) NOT NULL,
-  `action_to` varchar(10) NOT NULL,
-  PRIMARY KEY (`confirm_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `action_to` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_confirm_action`
@@ -3146,11 +3105,10 @@ INSERT INTO `pc_confirm_action` (`confirm_id`, `file_no`, `action_from`, `action
 -- Table structure for table `pc_doc_type_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_doc_type_tbl` (
-  `doc_type_id` int(10) NOT NULL AUTO_INCREMENT,
-  `doc_type` varchar(100) NOT NULL,
-  PRIMARY KEY (`doc_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+CREATE TABLE `pc_doc_type_tbl` (
+  `doc_type_id` int(10) NOT NULL,
+  `doc_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_doc_type_tbl`
@@ -3166,16 +3124,15 @@ INSERT INTO `pc_doc_type_tbl` (`doc_type_id`, `doc_type`) VALUES
 -- Table structure for table `pc_file_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_file_tbl` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_file_tbl` (
+  `id` int(11) NOT NULL,
   `file_no` varchar(50) NOT NULL,
   `year` int(11) NOT NULL,
   `pr_no` int(11) NOT NULL,
   `pr_type_no` varchar(25) NOT NULL,
   `pr_method` int(11) NOT NULL,
-  `description` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+  `description` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_file_tbl`
@@ -3209,40 +3166,16 @@ INSERT INTO `pc_file_tbl` (`id`, `file_no`, `year`, `pr_no`, `pr_type_no`, `pr_m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pc_itemcode`
---
-
-CREATE TABLE IF NOT EXISTS `pc_itemcode` (
-  `code` int(10) NOT NULL AUTO_INCREMENT,
-  `description` varchar(150) NOT NULL,
-  PRIMARY KEY (`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `pc_itemcode`
---
-
-INSERT INTO `pc_itemcode` (`code`, `description`) VALUES
-(1, 'Air conditioners'),
-(2, 'Audio visual products(OHP,multimedia projectors,screens,amplifliers,microphones....etc)'),
-(3, 'Batteries(motor vehicles,UPS,...etc)'),
-(4, 'Camera-cameras(compact camera,DSLR camera,video cameras,tripods & related accessories)'),
-(5, 'camera-CCTV camera & accessories(cameras,DVRs,NVR,enclosures,cables,DC power supplies..etc)');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pc_pdf_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_pdf_tbl` (
-  `pdf_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_pdf_tbl` (
+  `pdf_id` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
   `filename` varchar(50) NOT NULL,
   `pr_no` int(10) NOT NULL,
-  `doc_type` varchar(50) NOT NULL,
-  PRIMARY KEY (`pdf_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `doc_type` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_pdf_tbl`
@@ -3261,11 +3194,10 @@ INSERT INTO `pc_pdf_tbl` (`pdf_id`, `description`, `filename`, `pr_no`, `doc_typ
 -- Table structure for table `pc_procurement_method_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_procurement_method_tbl` (
-  `pro_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(100) NOT NULL,
-  PRIMARY KEY (`pro_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+CREATE TABLE `pc_procurement_method_tbl` (
+  `pro_id` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_procurement_method_tbl`
@@ -3282,10 +3214,9 @@ INSERT INTO `pc_procurement_method_tbl` (`pro_id`, `description`) VALUES
 -- Table structure for table `pc_pr_deny`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_pr_deny` (
+CREATE TABLE `pc_pr_deny` (
   `br_no` int(10) NOT NULL,
-  `reason` text NOT NULL,
-  PRIMARY KEY (`br_no`)
+  `reason` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -3302,8 +3233,8 @@ INSERT INTO `pc_pr_deny` (`br_no`, `reason`) VALUES
 -- Table structure for table `pc_pr_dtls_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_pr_dtls_tbl` (
-  `pr_dtls_code` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_pr_dtls_tbl` (
+  `pr_dtls_code` int(11) NOT NULL,
   `pr_no` varchar(25) NOT NULL,
   `applicant` int(10) NOT NULL,
   `serial_no` int(10) NOT NULL,
@@ -3339,10 +3270,8 @@ CREATE TABLE IF NOT EXISTS `pc_pr_dtls_tbl` (
   `pr_type_no` int(11) NOT NULL,
   `file_no` varchar(25) NOT NULL,
   `remarks` varchar(10) DEFAULT NULL,
-  `ap_code` varchar(20) NOT NULL,
-  PRIMARY KEY (`pr_dtls_code`),
-  KEY `item_no` (`usage_no`,`pro_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `ap_code` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_pr_dtls_tbl`
@@ -3361,12 +3290,11 @@ INSERT INTO `pc_pr_dtls_tbl` (`pr_dtls_code`, `pr_no`, `applicant`, `serial_no`,
 -- Table structure for table `pc_pr_type`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_pr_type` (
-  `pr_type_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_pr_type` (
+  `pr_type_no` int(11) NOT NULL,
   `description` varchar(10) NOT NULL,
-  `short_name` varchar(5) NOT NULL,
-  PRIMARY KEY (`pr_type_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `short_name` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_pr_type`
@@ -3383,17 +3311,16 @@ INSERT INTO `pc_pr_type` (`pr_type_no`, `description`, `short_name`) VALUES
 -- Table structure for table `pc_pur_request`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_pur_request` (
-  `per_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_pur_request` (
+  `per_id` int(10) NOT NULL,
   `pr_no` int(10) NOT NULL,
   `description` varchar(255) NOT NULL,
   `Year` int(11) NOT NULL,
   `min_requirement` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `Officer_name` varchar(255) NOT NULL,
-  `Designation` varchar(255) NOT NULL,
-  PRIMARY KEY (`per_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+  `Designation` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_pur_request`
@@ -3416,12 +3343,11 @@ INSERT INTO `pc_pur_request` (`per_id`, `pr_no`, `description`, `Year`, `min_req
 -- Table structure for table `pc_shdl_task_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_shdl_task_tbl` (
-  `sh_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_shdl_task_tbl` (
+  `sh_no` int(11) NOT NULL,
   `sh_des` varchar(25) NOT NULL,
-  `date_range` int(11) NOT NULL,
-  PRIMARY KEY (`sh_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  `date_range` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_shdl_task_tbl`
@@ -3445,11 +3371,147 @@ INSERT INTO `pc_shdl_task_tbl` (`sh_no`, `sh_des`, `date_range`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pc_spec`
+--
+
+CREATE TABLE `pc_spec` (
+  `spec_id` int(10) NOT NULL,
+  `prno` int(5) NOT NULL,
+  `spec_name` varchar(200) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_spec`
+--
+
+INSERT INTO `pc_spec` (`spec_id`, `prno`, `spec_name`) VALUES
+(1, 0, 'Software'),
+(2, 0, 'Components'),
+(3, 0, 'General Specifications'),
+(6, 3, 'ljkjkjllk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_spec_equipment`
+--
+
+CREATE TABLE `pc_spec_equipment` (
+  `equip_id` int(10) NOT NULL,
+  `equip_desc` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_spec_equipment`
+--
+
+INSERT INTO `pc_spec_equipment` (`equip_id`, `equip_desc`) VALUES
+(1, 'Computer'),
+(2, 'Printer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_spec_main_cat`
+--
+
+CREATE TABLE `pc_spec_main_cat` (
+  `main_id` int(10) NOT NULL,
+  `main_desc` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_spec_main_cat`
+--
+
+INSERT INTO `pc_spec_main_cat` (`main_id`, `main_desc`) VALUES
+(1, 'Technical'),
+(2, 'Genaral');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_sub_action_tbl`
+--
+
+CREATE TABLE `pc_sub_action_tbl` (
+  `id` int(10) NOT NULL,
+  `desc` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_sub_action_tbl`
+--
+
+INSERT INTO `pc_sub_action_tbl` (`id`, `desc`) VALUES
+(1, 'User'),
+(2, 'Director of Communication'),
+(3, 'Director of Electronics'),
+(4, 'Acting Director ISD'),
+(5, 'Acting Director IT'),
+(6, 'Acting Director Space'),
+(7, 'Senior Deputy Director IR'),
+(8, 'Senior Deputy Director Finance'),
+(9, 'AD(Admin)'),
+(10, 'AD(IA)'),
+(11, 'DD(Media)'),
+(12, 'DD(LS)'),
+(13, 'DDG(A&F)'),
+(14, 'DDG(TO)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_sub_spec`
+--
+
+CREATE TABLE `pc_sub_spec` (
+  `sub_id` int(10) NOT NULL,
+  `main_spec` int(10) NOT NULL,
+  `sub_spec` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_sub_spec`
+--
+
+INSERT INTO `pc_sub_spec` (`sub_id`, `main_spec`, `sub_spec`) VALUES
+(1, 1, 'Included software'),
+(2, 2, 'gjghfhjgk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_sub_specification`
+--
+
+CREATE TABLE `pc_sub_specification` (
+  `id` int(10) NOT NULL,
+  `equipment` int(10) NOT NULL,
+  `main_spec` int(10) NOT NULL,
+  `sub_spec1` varchar(200) DEFAULT NULL,
+  `sub_spec2` varchar(200) DEFAULT NULL,
+  `sub_spec3` varchar(200) DEFAULT NULL,
+  `sub_spec4` varchar(200) DEFAULT NULL,
+  `sub_spec5` varchar(200) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_sub_specification`
+--
+
+INSERT INTO `pc_sub_specification` (`id`, `equipment`, `main_spec`, `sub_spec1`, `sub_spec2`, `sub_spec3`, `sub_spec4`, `sub_spec5`) VALUES
+(10, 1, 2, 'hkgkdsfgkf', 'nbkdjsfgdsf', 'poidfhsjfj', 'wvhdfgysdgu', ''),
+(9, 1, 1, 'tedghgkhjkh', 'gcxzgcugcz', 'yuzgfhjgzsf', 'mnbfjsdjff', 'oiuyigjkfgfkjdf');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pc_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_supplier` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_supplier` (
+  `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `tel` int(20) NOT NULL,
@@ -3458,19 +3520,35 @@ CREATE TABLE IF NOT EXISTS `pc_supplier` (
   `vcrdt` int(100) NOT NULL,
   `file_ref` int(20) NOT NULL,
   `web` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `code` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_supplier`
 --
 
-INSERT INTO `pc_supplier` (`id`, `name`, `address`, `tel`, `fax`, `crdt`, `vcrdt`, `file_ref`, `web`, `email`, `code`) VALUES
-(63, 'wewew', 'Add', 34343, 343, 'dfdfd', 234668, 8890, '', '', 0),
-(64, 'dffgfg', 'fgfgfgf', 444, 32311, 'fgfgg', 44, 44556666, 'bhnn', 'hghghhjh', 4),
-(65, 'asada', 'dsdsds', 3433, 335, 'fhghg', 455, 5454, 'fgghgh', 'hghghg', 3);
+INSERT INTO `pc_supplier` (`id`, `name`, `address`, `tel`, `fax`, `crdt`, `vcrdt`, `file_ref`, `web`, `email`) VALUES
+(64, 'dffgfg', 'fgfgfgf', 444, 32311, 'fgfgg', 4455, 44556666, 'bhnn', 'hghghhjh'),
+(65, 'asada', 'dsdsds', 3433, 335, 'fhghg', 455, 5454, 'fgghgh', 'hghghg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pc_supplier_item`
+--
+
+CREATE TABLE `pc_supplier_item` (
+  `id` int(10) NOT NULL,
+  `sup_name` varchar(100) NOT NULL,
+  `sup_item` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_supplier_item`
+--
+
+INSERT INTO `pc_supplier_item` (`id`, `sup_name`, `sup_item`) VALUES
+(2, '65', '10');
 
 -- --------------------------------------------------------
 
@@ -3478,17 +3556,16 @@ INSERT INTO `pc_supplier` (`id`, `name`, `address`, `tel`, `fax`, `crdt`, `vcrdt
 -- Table structure for table `pc_transfer_bud`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_transfer_bud` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_transfer_bud` (
+  `id` int(11) NOT NULL,
   `req_user` varchar(15) NOT NULL,
   `tra_user` varchar(15) NOT NULL,
   `bud_code_frm` varchar(20) NOT NULL,
   `bud_code_to` varchar(20) NOT NULL,
   `amount` double NOT NULL,
   `req_date` date NOT NULL,
-  `tra_date` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `tra_date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -3496,12 +3573,11 @@ CREATE TABLE IF NOT EXISTS `pc_transfer_bud` (
 -- Table structure for table `pc_usage_dtls_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pc_usage_dtls_tbl` (
-  `usage_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pc_usage_dtls_tbl` (
+  `usage_no` int(11) NOT NULL,
   `usg_descrip` varchar(100) NOT NULL,
-  `usage_nm` varchar(10) NOT NULL,
-  PRIMARY KEY (`usage_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `usage_nm` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pc_usage_dtls_tbl`
@@ -3517,8 +3593,8 @@ INSERT INTO `pc_usage_dtls_tbl` (`usage_no`, `usg_descrip`, `usage_nm`) VALUES
 -- Table structure for table `pr_projects`
 --
 
-CREATE TABLE IF NOT EXISTS `pr_projects` (
-  `serial_no` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pr_projects` (
+  `serial_no` int(11) NOT NULL,
   `year` int(4) NOT NULL,
   `div_code` int(11) NOT NULL,
   `pt_code` int(11) NOT NULL,
@@ -3532,12 +3608,8 @@ CREATE TABLE IF NOT EXISTS `pr_projects` (
   `cname` varchar(50) NOT NULL,
   `confirm` varchar(1) NOT NULL DEFAULT 'n',
   `sk_code` varchar(15) NOT NULL,
-  `p_close` varchar(1) NOT NULL DEFAULT 'n',
-  PRIMARY KEY (`serial_no`),
-  UNIQUE KEY `code` (`code`),
-  KEY `pt_code` (`pt_code`),
-  KEY `div_code` (`div_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+  `p_close` varchar(1) NOT NULL DEFAULT 'n'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pr_projects`
@@ -3596,12 +3668,11 @@ INSERT INTO `pr_projects` (`serial_no`, `year`, `div_code`, `pt_code`, `descript
 -- Table structure for table `pr_project_types`
 --
 
-CREATE TABLE IF NOT EXISTS `pr_project_types` (
-  `pt_code` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pr_project_types` (
+  `pt_code` int(11) NOT NULL,
   `pt_short_des` varchar(50) NOT NULL,
-  `pt_description` varchar(50) NOT NULL,
-  PRIMARY KEY (`pt_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `pt_description` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pr_project_types`
@@ -3623,12 +3694,11 @@ INSERT INTO `pr_project_types` (`pt_code`, `pt_short_des`, `pt_description`) VAL
 -- Table structure for table `pr_stores_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `pr_stores_tbl` (
-  `st_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pr_stores_tbl` (
+  `st_id` int(11) NOT NULL,
   `serial_no` int(11) NOT NULL,
-  `st_code` varchar(15) NOT NULL,
-  PRIMARY KEY (`st_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `st_code` varchar(15) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pr_stores_tbl`
@@ -3639,6 +3709,586 @@ INSERT INTO `pr_stores_tbl` (`st_id`, `serial_no`, `st_code`) VALUES
 (2, 1, 'sdss'),
 (3, 1, 'sds');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reg_sup`
+--
+
+CREATE TABLE `reg_sup` (
+  `item_code` int(10) NOT NULL,
+  `description` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reg_sup`
+--
+
+INSERT INTO `reg_sup` (`item_code`, `description`) VALUES
+(10, 'Air Conditioners'),
+(11, 'Audio Visual Products(OHP,Multimedia projectors,sc...'),
+(12, 'Batteries(Motor Vehicles,UPS,etc.)'),
+(13, 'Camera-cameras(compact camers,DSLR camera,video ca...'),
+(15, 'camera-CCTV camera & accessories (cameras,DVRs,NVR.'),
+(17, 'computer-computer spare parts'),
+(18, 'computer-Network Equipment & peripheral accessorie...'),
+(19, 'computer-personal computers and laptops'),
+(20, 'computer-personal computers and laptops');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `com_division`
+--
+ALTER TABLE `com_division`
+  ADD PRIMARY KEY (`div_id`);
+
+--
+-- Indexes for table `deny_projects`
+--
+ALTER TABLE `deny_projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `designation_tbl`
+--
+ALTER TABLE `designation_tbl`
+  ADD PRIMARY KEY (`DesigCode`);
+
+--
+-- Indexes for table `division_tbl`
+--
+ALTER TABLE `division_tbl`
+  ADD PRIMARY KEY (`DivisionCode`);
+
+--
+-- Indexes for table `emp_details_tbl`
+--
+ALTER TABLE `emp_details_tbl`
+  ADD PRIMARY KEY (`EmpNo`),
+  ADD KEY `DivisionCode` (`DivisionCode`),
+  ADD KEY `DesigCode` (`DesigCode`),
+  ADD KEY `EmpTypeCode` (`EmpTypeCode`),
+  ADD KEY `CategoryCode` (`CategoryCode`);
+
+--
+-- Indexes for table `hr_desig_cadre`
+--
+ALTER TABLE `hr_desig_cadre`
+  ADD PRIMARY KEY (`DesigCode`);
+
+--
+-- Indexes for table `hr_division_tbl`
+--
+ALTER TABLE `hr_division_tbl`
+  ADD PRIMARY KEY (`DivisionCode`);
+
+--
+-- Indexes for table `hr_login_tbl`
+--
+ALTER TABLE `hr_login_tbl`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `hr_official_details`
+--
+ALTER TABLE `hr_official_details`
+  ADD PRIMARY KEY (`EmpNo`),
+  ADD KEY `DivisionCode` (`DivisionCode`),
+  ADD KEY `DesigCode` (`DesigCode`);
+
+--
+-- Indexes for table `hr_personal_details`
+--
+ALTER TABLE `hr_personal_details`
+  ADD PRIMARY KEY (`EmpNo`);
+
+--
+-- Indexes for table `hr_projects`
+--
+ALTER TABLE `hr_projects`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD KEY `pt_code` (`pt_code`),
+  ADD KEY `div_code` (`div_code`);
+
+--
+-- Indexes for table `hr_project_details`
+--
+ALTER TABLE `hr_project_details`
+  ADD PRIMARY KEY (`serial_no`);
+
+--
+-- Indexes for table `hr_project_types`
+--
+ALTER TABLE `hr_project_types`
+  ADD PRIMARY KEY (`pt_code`);
+
+--
+-- Indexes for table `hr_salary`
+--
+ALTER TABLE `hr_salary`
+  ADD PRIMARY KEY (`SalaryCode`);
+
+--
+-- Indexes for table `hr_salary_details`
+--
+ALTER TABLE `hr_salary_details`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `hr_salary_scale_details`
+--
+ALTER TABLE `hr_salary_scale_details`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `hr_stores_tbl`
+--
+ALTER TABLE `hr_stores_tbl`
+  ADD PRIMARY KEY (`st_id`);
+
+--
+-- Indexes for table `login_tbl`
+--
+ALTER TABLE `login_tbl`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `login_tbl_leave`
+--
+ALTER TABLE `login_tbl_leave`
+  ADD PRIMARY KEY (`Emp_No`);
+
+--
+-- Indexes for table `main_sub_division`
+--
+ALTER TABLE `main_sub_division`
+  ADD PRIMARY KEY (`div_id`);
+
+--
+-- Indexes for table `pc_action_tbl`
+--
+ALTER TABLE `pc_action_tbl`
+  ADD PRIMARY KEY (`action_id`);
+
+--
+-- Indexes for table `pc_appoint_tec`
+--
+ALTER TABLE `pc_appoint_tec`
+  ADD PRIMARY KEY (`File_no`),
+  ADD UNIQUE KEY `File_no` (`File_no`);
+
+--
+-- Indexes for table `pc_app_tec`
+--
+ALTER TABLE `pc_app_tec`
+  ADD PRIMARY KEY (`pr_app_no`);
+
+--
+-- Indexes for table `pc_bid_doc`
+--
+ALTER TABLE `pc_bid_doc`
+  ADD PRIMARY KEY (`doc_id`);
+
+--
+-- Indexes for table `pc_budget_tbl`
+--
+ALTER TABLE `pc_budget_tbl`
+  ADD PRIMARY KEY (`budg_no`);
+
+--
+-- Indexes for table `pc_bud_req_hod`
+--
+ALTER TABLE `pc_bud_req_hod`
+  ADD PRIMARY KEY (`total_id`);
+
+--
+-- Indexes for table `pc_bud_req_user`
+--
+ALTER TABLE `pc_bud_req_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_bud_req_user_old`
+--
+ALTER TABLE `pc_bud_req_user_old`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_confirm_action`
+--
+ALTER TABLE `pc_confirm_action`
+  ADD PRIMARY KEY (`confirm_id`);
+
+--
+-- Indexes for table `pc_doc_type_tbl`
+--
+ALTER TABLE `pc_doc_type_tbl`
+  ADD PRIMARY KEY (`doc_type_id`);
+
+--
+-- Indexes for table `pc_file_tbl`
+--
+ALTER TABLE `pc_file_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_pdf_tbl`
+--
+ALTER TABLE `pc_pdf_tbl`
+  ADD PRIMARY KEY (`pdf_id`);
+
+--
+-- Indexes for table `pc_procurement_method_tbl`
+--
+ALTER TABLE `pc_procurement_method_tbl`
+  ADD PRIMARY KEY (`pro_id`);
+
+--
+-- Indexes for table `pc_pr_deny`
+--
+ALTER TABLE `pc_pr_deny`
+  ADD PRIMARY KEY (`br_no`);
+
+--
+-- Indexes for table `pc_pr_dtls_tbl`
+--
+ALTER TABLE `pc_pr_dtls_tbl`
+  ADD PRIMARY KEY (`pr_dtls_code`),
+  ADD KEY `item_no` (`usage_no`,`pro_code`);
+
+--
+-- Indexes for table `pc_pr_type`
+--
+ALTER TABLE `pc_pr_type`
+  ADD PRIMARY KEY (`pr_type_no`);
+
+--
+-- Indexes for table `pc_pur_request`
+--
+ALTER TABLE `pc_pur_request`
+  ADD PRIMARY KEY (`per_id`);
+
+--
+-- Indexes for table `pc_shdl_task_tbl`
+--
+ALTER TABLE `pc_shdl_task_tbl`
+  ADD PRIMARY KEY (`sh_no`);
+
+--
+-- Indexes for table `pc_spec`
+--
+ALTER TABLE `pc_spec`
+  ADD PRIMARY KEY (`spec_id`);
+
+--
+-- Indexes for table `pc_spec_equipment`
+--
+ALTER TABLE `pc_spec_equipment`
+  ADD PRIMARY KEY (`equip_id`);
+
+--
+-- Indexes for table `pc_spec_main_cat`
+--
+ALTER TABLE `pc_spec_main_cat`
+  ADD PRIMARY KEY (`main_id`);
+
+--
+-- Indexes for table `pc_sub_action_tbl`
+--
+ALTER TABLE `pc_sub_action_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_sub_spec`
+--
+ALTER TABLE `pc_sub_spec`
+  ADD PRIMARY KEY (`sub_id`);
+
+--
+-- Indexes for table `pc_sub_specification`
+--
+ALTER TABLE `pc_sub_specification`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_supplier`
+--
+ALTER TABLE `pc_supplier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_supplier_item`
+--
+ALTER TABLE `pc_supplier_item`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_transfer_bud`
+--
+ALTER TABLE `pc_transfer_bud`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pc_usage_dtls_tbl`
+--
+ALTER TABLE `pc_usage_dtls_tbl`
+  ADD PRIMARY KEY (`usage_no`);
+
+--
+-- Indexes for table `pr_projects`
+--
+ALTER TABLE `pr_projects`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD KEY `pt_code` (`pt_code`),
+  ADD KEY `div_code` (`div_code`);
+
+--
+-- Indexes for table `pr_project_types`
+--
+ALTER TABLE `pr_project_types`
+  ADD PRIMARY KEY (`pt_code`);
+
+--
+-- Indexes for table `pr_stores_tbl`
+--
+ALTER TABLE `pr_stores_tbl`
+  ADD PRIMARY KEY (`st_id`);
+
+--
+-- Indexes for table `reg_sup`
+--
+ALTER TABLE `reg_sup`
+  ADD PRIMARY KEY (`item_code`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `com_division`
+--
+ALTER TABLE `com_division`
+  MODIFY `div_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `deny_projects`
+--
+ALTER TABLE `deny_projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `designation_tbl`
+--
+ALTER TABLE `designation_tbl`
+  MODIFY `DesigCode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+--
+-- AUTO_INCREMENT for table `division_tbl`
+--
+ALTER TABLE `division_tbl`
+  MODIFY `DivisionCode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `hr_division_tbl`
+--
+ALTER TABLE `hr_division_tbl`
+  MODIFY `DivisionCode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `hr_login_tbl`
+--
+ALTER TABLE `hr_login_tbl`
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT for table `hr_official_details`
+--
+ALTER TABLE `hr_official_details`
+  MODIFY `EmpNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+--
+-- AUTO_INCREMENT for table `hr_projects`
+--
+ALTER TABLE `hr_projects`
+  MODIFY `serial_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+--
+-- AUTO_INCREMENT for table `hr_project_types`
+--
+ALTER TABLE `hr_project_types`
+  MODIFY `pt_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `hr_salary_details`
+--
+ALTER TABLE `hr_salary_details`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `hr_salary_scale_details`
+--
+ALTER TABLE `hr_salary_scale_details`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+--
+-- AUTO_INCREMENT for table `hr_stores_tbl`
+--
+ALTER TABLE `hr_stores_tbl`
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `login_tbl`
+--
+ALTER TABLE `login_tbl`
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT for table `main_sub_division`
+--
+ALTER TABLE `main_sub_division`
+  MODIFY `div_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `pc_action_tbl`
+--
+ALTER TABLE `pc_action_tbl`
+  MODIFY `action_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `pc_app_tec`
+--
+ALTER TABLE `pc_app_tec`
+  MODIFY `pr_app_no` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `pc_bid_doc`
+--
+ALTER TABLE `pc_bid_doc`
+  MODIFY `doc_id` int(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pc_budget_tbl`
+--
+ALTER TABLE `pc_budget_tbl`
+  MODIFY `budg_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `pc_bud_req_hod`
+--
+ALTER TABLE `pc_bud_req_hod`
+  MODIFY `total_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `pc_bud_req_user`
+--
+ALTER TABLE `pc_bud_req_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+--
+-- AUTO_INCREMENT for table `pc_bud_req_user_old`
+--
+ALTER TABLE `pc_bud_req_user_old`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+--
+-- AUTO_INCREMENT for table `pc_confirm_action`
+--
+ALTER TABLE `pc_confirm_action`
+  MODIFY `confirm_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `pc_doc_type_tbl`
+--
+ALTER TABLE `pc_doc_type_tbl`
+  MODIFY `doc_type_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pc_file_tbl`
+--
+ALTER TABLE `pc_file_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+--
+-- AUTO_INCREMENT for table `pc_pdf_tbl`
+--
+ALTER TABLE `pc_pdf_tbl`
+  MODIFY `pdf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `pc_procurement_method_tbl`
+--
+ALTER TABLE `pc_procurement_method_tbl`
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `pc_pr_dtls_tbl`
+--
+ALTER TABLE `pc_pr_dtls_tbl`
+  MODIFY `pr_dtls_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `pc_pr_type`
+--
+ALTER TABLE `pc_pr_type`
+  MODIFY `pr_type_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `pc_pur_request`
+--
+ALTER TABLE `pc_pur_request`
+  MODIFY `per_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `pc_shdl_task_tbl`
+--
+ALTER TABLE `pc_shdl_task_tbl`
+  MODIFY `sh_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `pc_spec`
+--
+ALTER TABLE `pc_spec`
+  MODIFY `spec_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `pc_spec_equipment`
+--
+ALTER TABLE `pc_spec_equipment`
+  MODIFY `equip_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pc_spec_main_cat`
+--
+ALTER TABLE `pc_spec_main_cat`
+  MODIFY `main_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pc_sub_action_tbl`
+--
+ALTER TABLE `pc_sub_action_tbl`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `pc_sub_spec`
+--
+ALTER TABLE `pc_sub_spec`
+  MODIFY `sub_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pc_sub_specification`
+--
+ALTER TABLE `pc_sub_specification`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `pc_supplier`
+--
+ALTER TABLE `pc_supplier`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+--
+-- AUTO_INCREMENT for table `pc_supplier_item`
+--
+ALTER TABLE `pc_supplier_item`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pc_transfer_bud`
+--
+ALTER TABLE `pc_transfer_bud`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pc_usage_dtls_tbl`
+--
+ALTER TABLE `pc_usage_dtls_tbl`
+  MODIFY `usage_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pr_projects`
+--
+ALTER TABLE `pr_projects`
+  MODIFY `serial_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+--
+-- AUTO_INCREMENT for table `pr_project_types`
+--
+ALTER TABLE `pr_project_types`
+  MODIFY `pt_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `pr_stores_tbl`
+--
+ALTER TABLE `pr_stores_tbl`
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `reg_sup`
+--
+ALTER TABLE `reg_sup`
+  MODIFY `item_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
