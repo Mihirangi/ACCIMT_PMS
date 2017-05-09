@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2017 at 03:28 AM
+-- Generation Time: May 09, 2017 at 03:57 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -3600,11 +3600,7 @@ CREATE TABLE `pc_supplier_item` (
 INSERT INTO `pc_supplier_item` (`id`, `sup_name`, `sup_item`) VALUES
 (12, 'dffgfg', '11'),
 (13, 'dffgfg', '20'),
-(14, 'asada', '12'),
-(15, 'dffgfg', '11'),
-(9, 'asada', '12'),
-(10, 'dffgfg', '10'),
-(11, 'asada', '19');
+(14, 'asada', '12');
 
 -- --------------------------------------------------------
 

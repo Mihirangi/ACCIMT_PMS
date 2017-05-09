@@ -75,7 +75,7 @@ class FRMOperations
               <li><span class="dir">Supplier</span>
               <ul>
               <li><a href="supplier_detail.php" onClick="scrollpg()" target="datafrm">Registration of Suppliers</a></li>
-              <li><a href="supplier_item.php" onClick="scrollpg()" target="datafrm">Supplier Item</a></li>
+              <li><a href="supplier_item1.php" onClick="scrollpg()" target="datafrm">Supplier Item</a></li>
               <li><a href="Reg_supplies.php" onClick="scrollpg()" target="datafrm">Add Items</a></li>
               </ul>
               </li>

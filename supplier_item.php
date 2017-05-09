@@ -101,6 +101,60 @@ $butOp=false;
        <br>
                  <input type="submit" name="add" value="Add">
                  <br><br>
+            
+        <table id="wrapped" align="center" cellspacing="3" cellpadding="5" border="0">
+			<tr>
+				<th>
+				
+				
+				<?php 
+				
+				//-------------- Display the data in the Usage Table-----------------------//
+					$result1=$db->Exe_Qry("SELECT * FROM pc_supplier_item ORDER BY sup_name");
+					if(mysql_num_rows($result1)>0){
+					if ($myrow = mysql_fetch_array($result1)) {
+
+					// display list if there are records to display
+					echo '<br>';
+					echo '<table id = "table2" align="center" border="1" cellspacing="0" cellpadding="0" width=50% >'."\n";
+					echo '<tr></tr>';
+					echo '<tr height="30">';   //display headers
+					echo '<td class="tbrow" ><div align="center">Supplier Name</td>';
+					echo '<td class="tbrow" ><div align="center">Item</td>';
+					
+					echo "</tr>\n";
+
+					//display list if there are records to display
+					$i=1;
+					do {  
+						// row colors
+						if ($i % 2 != 0) # An odd row 
+							$bla = "#FFFFFF"; 
+						else # An even row 
+							$bla = "#FFFFFF"; 
+				?>
+	 
+				<tr>
+                	<td class="" ><?php echo $myrow['sup_name']; ?></td> 
+					<td class="" ><?php echo $myrow['sup_item']; ?></td>  
+					
+					
+					
+				<?php 
+					$i++;
+					} 
+					while ($myrow = mysql_fetch_array($result1));
+					echo '</table>';
+					}
+					}
+					else{
+						echo "No Result to Display";
+					}
+				?>
+				
+				</div>
+				</th>
+			</table>
           
 	</form>
 	

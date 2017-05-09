@@ -38,56 +38,20 @@ $butOp=false;
 			header("Location:supplier_item1.php");
 		}
         
-//       if(isset($_POST['Delete']))
-//		{
-//			$sname=$_POST['sname'];
-//			$itemcode=$_POST['itemcode'];
-//            $id=$myrow['id'];
-//			
-//			
-//			mysql_query("DELETE FROM pc_supplier_item WHERE id='$id'");
-//            echo '<script> alert("Record Successfully Deleted");</script>';
-//            
-//		}
+        
+       if(isset($_POST['delete']))
+		{
+            $id=$_POST['id'];
+			
+			mysql_query("DELETE FROM pc_supplier_item WHERE id='$id'");
+            echo '<script> alert("Record Successfully Deleted");</script>';
+            
+		}
         
     
-        if(isset($_GET['delete_id']))
-        {
-         $sql_query="DELETE FROM pc_supplier_item WHERE id=".$_GET['delete_id'];
-         mysql_query($sql_query);
-         //header("Location: $_SERVER[PHP_SELF]");
-
-         // sql query execution function
-         if(mysql_query($sql_query))
-         {
-          ?>
-          <script type="text/javascript">
-          alert('Data Deleted Successfully ');
-          window.location.href='supplier_view.php';
-          </script>
-          <?php
-         }
-         else
-         {
-          ?>
-          <script type="text/javascript">
-          alert('error occured');
-
-          </script>
-          <?php
-         }
-         // sql query execution function
-        }
         
 	?>
     
-    <script> 
-        function delete_id(id){
-            if(confirm('Sure to Delete ?')){
-                window.location.href='supplier_view.php?delete_id='+id;
-            }
-        }
-    </script>
 
 
 <div id="wrapp">
@@ -96,7 +60,7 @@ $butOp=false;
 <table align="center" class="searchResults">
 		<table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
 		  <caption>
-		  <h1>Supplier Items</h1></caption>
+		  <h1>View by Supplier</h1></caption>
 				<tr>
 					<th> 
                     
@@ -170,12 +134,22 @@ $butOp=false;
 				?>
 	 
 				<tr>
-                    <td class="" ><?php echo $myrow['id']; ?></td>
+                    <td class="" ><input type="hidden" name="id" value="<?php echo $myrow['id']; ?>"/></td>
                 	<td class="" ><?php echo $myrow['sup_name']; ?></td> 
 					<td class="" ><?php echo $myrow['sup_item']; ?></td>
-                    <td align="center"><a href="javascript:delete_id('<?php echo $myrow[id]; ?>')"><input type="submit" name="delete" value="Delete"/></a></td>
+                    <td align="center"><input type="submit" name="delete" value="Delete"/></td>
                 </tr>	
-					
+				
+                <?php
+//                    if(isset($_POST['delete']))
+//                    {
+//                        $id=$_POST['id'];
+//
+//                        mysql_query("DELETE FROM pc_supplier_item WHERE id='$id'");
+//                        echo '<script> alert("Record Successfully Deleted");</script>';
+//
+//                    }
+                ?>
 					
 				<?php 
 					$i++;

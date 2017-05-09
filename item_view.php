@@ -38,14 +38,13 @@ $butOp=false;
 			header("Location:supplier_item1.php");
 		}
         
-       if(isset($_POST['Delete']))
+       if(isset($_POST['delete']))
 		{
-			$sname=$_POST['sname'];
-			$itemcode=$_POST['itemcode'];
+            $id=$_POST['id'];
 			
-			
-			$sql="delete from pc_supplier_item where sup_name=$sname";
-	        mysql_query($sql);
+			mysql_query("DELETE FROM pc_supplier_item WHERE id='$id'");
+            echo '<script> alert("Record Successfully Deleted");</script>';
+            
 		}
 		
 	
@@ -61,7 +60,7 @@ $butOp=false;
 <table align="center" class="searchResults">
 		<table width="94%" height="297"  border="0" align="center" cellpadding="10" cellspacing="1" id="wrapped2">
 		  <caption>
-		  <h1>Supplier Items</h1></caption>
+		  <h1>View by Item</h1></caption>
 				<tr>
 					<th> 
                     
@@ -117,8 +116,10 @@ $butOp=false;
 					echo '<table id = "table2" align="center" border="1" cellspacing="0" cellpadding="0" width=50% >'."\n";
 					echo '<tr></tr>';
 					echo '<tr height="30">';   //display headers
+                    echo '<td class="tbrow" ><div align="center"></td>';
 					echo '<td class="tbrow" ><div align="center">Supplier Name</td>';
 					echo '<td class="tbrow" ><div align="center">Item</td>';
+                    echo '<td class="tbrow" ><div align="center"></td>';
 					
 					echo "</tr>\n";
 
@@ -133,10 +134,11 @@ $butOp=false;
 				?>
 	 
 				<tr>
+                    <td class="" ><input type="hidden" name="id" value="<?php echo $myrow['id']; ?>"/></td>
                 	<td class="" ><?php echo $myrow['sup_name']; ?></td> 
-					<td class="" ><?php echo $myrow['sup_item']; ?></td>  
-					
-					
+					<td class="" ><?php echo $myrow['sup_item']; ?></td>
+                    <td align="center"><input type="submit" name="delete" value="Delete"/></td>
+                </tr>
 					
 				<?php 
 					$i++;
