@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2017 at 05:19 AM
+-- Generation Time: May 09, 2017 at 03:28 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -2772,6 +2772,33 @@ INSERT INTO `pc_action_tbl` (`action_id`, `action_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pc_add_item`
+--
+
+CREATE TABLE `pc_add_item` (
+  `item_code` int(10) NOT NULL,
+  `description` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_add_item`
+--
+
+INSERT INTO `pc_add_item` (`item_code`, `description`) VALUES
+(10, 'Air Conditioners'),
+(11, 'Audio Visual Products(OHP,Multimedia projectors,sc...'),
+(12, 'Batteries(Motor Vehicles,UPS,etc.)'),
+(13, 'Camera-cameras(compact camers,DSLR camera,video ca...'),
+(15, 'camera-CCTV camera & accessories (cameras,DVRs,NVR.'),
+(17, 'computer-computer spare parts'),
+(18, 'computer-Network Equipment & peripheral accessorie...'),
+(19, 'computer-personal computers and laptops'),
+(20, 'computer-personal computers and laptops'),
+(22, 'mmmmmm');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pc_appoint_tec`
 --
 
@@ -3102,6 +3129,28 @@ INSERT INTO `pc_confirm_action` (`confirm_id`, `file_no`, `action_from`, `action
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pc_create_spec`
+--
+
+CREATE TABLE `pc_create_spec` (
+  `spec_id` int(10) NOT NULL,
+  `pr_no` int(10) NOT NULL,
+  `equipment` int(10) NOT NULL,
+  `technical` varchar(255) NOT NULL,
+  `general` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pc_create_spec`
+--
+
+INSERT INTO `pc_create_spec` (`spec_id`, `pr_no`, `equipment`, `technical`, `general`) VALUES
+(4, 10, 1, 'tedghgkhjkh\r\ngcxzgcugcz\r\nyuzgfhjgzsf\r\nmnbfjsdjff\r\noiuyigjkfgfkjdf', 'hkgkdsfgkf\r\nnbkdjsfgdsf\r\npoidfhsjfj\r\nwvhdfgysdgu\r\n'),
+(3, 3, 2, 'trdcgmhgmb\r\nrtfgcvbnmbkjm\r\nwerdtfc\r\n\r\n', 'ghfjhj\r\ntghhg\r\ncxvbn\r\nrtryuihhju\r\n');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pc_doc_type_tbl`
 --
 
@@ -3278,7 +3327,6 @@ CREATE TABLE `pc_pr_dtls_tbl` (
 --
 
 INSERT INTO `pc_pr_dtls_tbl` (`pr_dtls_code`, `pr_no`, `applicant`, `serial_no`, `DivisionCode`, `Name_officer`, `descrip`, `pr_date`, `quantity`, `pur_ type`, `purpose`, `DesigCode`, `Dtls_of_equipment`, `est_cost`, `act_cost`, `bud_pro_des`, `alter_source`, `provision_des`, `simiar_item`, `similar_des`, `head_rec`, `head_rec_date`, `head_rec_sta`, `rec_ddg`, `rec_ddg_date`, `rec_ddg_sta`, `autri_dg`, `autri_dg_date`, `autri_dg_sta`, `usage_no`, `req_fulfill`, `target_month`, `pro_code`, `pr_type_no`, `file_no`, `remarks`, `ap_code`) VALUES
-(10, '10', 7, 0, 1, 'L. R. N. Somathilake', 'nvbvbvhvhvvh', '2017-04-24', 54, '', '     rrrr ', 9, '', 6789, 0, '', '', '   hfghfg   ', 0, 'fgfdhhhhhh', 0, '0000-00-00', '', 0, '0000-00-00', '', 1, '2016-10-06', 'Y', 0, 'gfhf', '', '', 0, '1', NULL, ''),
 (11, '', 93, 0, 0, '', '', '0000-00-00', 0, '', '          dssd        ', 0, '', 0, 0, '', '', '', 0, 'adsd', 0, '0000-00-00', '', 0, '0000-00-00', '', 0, '0000-00-00', '', 0, '', '', '', 0, '', NULL, ''),
 (13, '3', 93, 0, 7, 'test', 'nfjfkfjk', '2016-11-08', 1, '', '    ddfd', 2, 'sss', 111, 0, '', 'fgfg', '   xdd ', 77, 'fgg', 0, '0000-00-00', '', 0, '0000-00-00', '', 0, '0000-00-00', '', 1, 'bh', 'October', '', 1, '2', NULL, ''),
 (14, '', 93, 0, 0, '', '', '0000-00-00', 0, '', '          dssd        ', 0, '', 0, 0, '', '', '', 0, 'adsd', 0, '0000-00-00', '', 0, '0000-00-00', '', 0, '0000-00-00', '', 0, '', '', '', 0, '', NULL, ''),
@@ -3501,6 +3549,8 @@ CREATE TABLE `pc_sub_specification` (
 --
 
 INSERT INTO `pc_sub_specification` (`id`, `equipment`, `main_spec`, `sub_spec1`, `sub_spec2`, `sub_spec3`, `sub_spec4`, `sub_spec5`) VALUES
+(12, 2, 1, 'trdcgmhgmb', 'rtfgcvbnmbkjm', 'werdtfc', '', ''),
+(11, 2, 2, 'ghfjhj', 'tghhg', 'cxvbn', 'rtryuihhju', ''),
 (10, 1, 2, 'hkgkdsfgkf', 'nbkdjsfgdsf', 'poidfhsjfj', 'wvhdfgysdgu', ''),
 (9, 1, 1, 'tedghgkhjkh', 'gcxzgcugcz', 'yuzgfhjgzsf', 'mnbfjsdjff', 'oiuyigjkfgfkjdf');
 
@@ -3548,7 +3598,13 @@ CREATE TABLE `pc_supplier_item` (
 --
 
 INSERT INTO `pc_supplier_item` (`id`, `sup_name`, `sup_item`) VALUES
-(2, '65', '10');
+(12, 'dffgfg', '11'),
+(13, 'dffgfg', '20'),
+(14, 'asada', '12'),
+(15, 'dffgfg', '11'),
+(9, 'asada', '12'),
+(10, 'dffgfg', '10'),
+(11, 'asada', '19');
 
 -- --------------------------------------------------------
 
@@ -3875,6 +3931,12 @@ ALTER TABLE `pc_action_tbl`
   ADD PRIMARY KEY (`action_id`);
 
 --
+-- Indexes for table `pc_add_item`
+--
+ALTER TABLE `pc_add_item`
+  ADD PRIMARY KEY (`item_code`);
+
+--
 -- Indexes for table `pc_appoint_tec`
 --
 ALTER TABLE `pc_appoint_tec`
@@ -3922,6 +3984,12 @@ ALTER TABLE `pc_bud_req_user_old`
 --
 ALTER TABLE `pc_confirm_action`
   ADD PRIMARY KEY (`confirm_id`);
+
+--
+-- Indexes for table `pc_create_spec`
+--
+ALTER TABLE `pc_create_spec`
+  ADD PRIMARY KEY (`spec_id`);
 
 --
 -- Indexes for table `pc_doc_type_tbl`
@@ -4145,6 +4213,11 @@ ALTER TABLE `main_sub_division`
 ALTER TABLE `pc_action_tbl`
   MODIFY `action_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `pc_add_item`
+--
+ALTER TABLE `pc_add_item`
+  MODIFY `item_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
 -- AUTO_INCREMENT for table `pc_app_tec`
 --
 ALTER TABLE `pc_app_tec`
@@ -4179,6 +4252,11 @@ ALTER TABLE `pc_bud_req_user_old`
 --
 ALTER TABLE `pc_confirm_action`
   MODIFY `confirm_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `pc_create_spec`
+--
+ALTER TABLE `pc_create_spec`
+  MODIFY `spec_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pc_doc_type_tbl`
 --
@@ -4248,7 +4326,7 @@ ALTER TABLE `pc_sub_spec`
 -- AUTO_INCREMENT for table `pc_sub_specification`
 --
 ALTER TABLE `pc_sub_specification`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `pc_supplier`
 --
@@ -4258,7 +4336,7 @@ ALTER TABLE `pc_supplier`
 -- AUTO_INCREMENT for table `pc_supplier_item`
 --
 ALTER TABLE `pc_supplier_item`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `pc_transfer_bud`
 --
