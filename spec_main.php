@@ -40,7 +40,7 @@ if (isset($_POST['btnadd'])){
     <form name = "form1" method = "POST" onSubmit="return formvalidate()" action = "">
         <table align="center" width="95%" id="wrapped2"  border="0" cellpadding="10" cellspacing="1">
             <caption>
-                <h1>Add Main Specifications</h1>
+                <h1>Specification Type</h1>
             </caption>
             <tr>
                 <th>
