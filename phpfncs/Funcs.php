@@ -96,8 +96,8 @@ class FRMOperations
 			   						<span class="dir">PR Specifications</span>
 			  						
 									<ul>
-								   <li><a href="spec_main.php" onClick="scrollpg()" target="datafrm">Main Specification</a></li>
-								   <li><a href="spec_sub.php" onClick="scrollpg()" target="datafrm">Sub Specification</a></li>
+								   <li><a href="spec_main.php" onClick="scrollpg()" target="datafrm">Type of Specification</a></li>
+								   <li><a href="spec_sub.php" onClick="scrollpg()" target="datafrm">Add Specification</a></li>
 								   <li><a href="spec_equip.php" onClick="scrollpg()" target="datafrm">Equipments</a></li>
 								   </ul>
 								   </li>
