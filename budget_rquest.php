@@ -4,6 +4,9 @@
     <title>Districts</title>
     <script language="javascript" src="calendar/calendar.js">
     </script>
+
+
+
     <?php
     session_start();
     $a=$_POST['PrCodeLst'];
@@ -150,6 +153,8 @@
     $ressmytest = $db->Exe_Qry("SELECT br_no FROM pc_bud_req_user");
 
 
+
+
     if (isset($_POST['btnAdd']))
     {
         $bud_year1=substr($bud_year,2,2);
@@ -192,26 +197,26 @@
             //$db->Exe_Qry("UPDATE pr_dtls_tbl SET pr_date='$Prdate', descrip='$Descript', quantity='$Quantity', estimated_cost='$EstCost', provision_description='$PrDes', alternative_source='$AltReso', simiar_item='$SimItems', similar_des='$PsEqi', requirement_fulfill='$req_fulfill', usage='$Usage', Project='$Project', pr_type_no='$Pr_type'  WHERE br_no='$PrCodeLst'");
             $empno = $_SESSION['proclogin_un'];
             $resss=$db->Exe_Qry("select sh_code from division_tbl WHERE DivisionCode=(SELECT DivisionCode FROM emp_details_tbl WHERE EmpNo='$empno')");
-            $divCode=$db->Next_Record($resss);
-            $div=$divCode["sh_code"];
-            $bud_code1=substr($bud_code,0,5);
-            print $bud_code1;
-            $resss1=$db->Exe_Qry("SELECT COUNT(bud_code) FROM pc_bud_req_user WHERE bud_year='2017' && bud_code LIKE '{$bud_code1}%' && user=$empno;");
-            $bud_codep=$db->Next_Record($resss1);
-            if($bud_codep['COUNT(bud_code)']==0){
-                $count1=1;
-                $bud_coden=$bud_code.'/'.$div.'/'.$bud_year1.'/'.$count1;
-                echo $bud_coden;
-            }
-            else{
-                $budcount=$bud_codep['COUNT(bud_code)'];
-                $budcount=$budcount+1;
-                $bud_coden=$bud_code.'/'.$div.'/'.$bud_year1.'/'.$budcount;
-                //$bud_coden=$bud_codep+1;
-                echo $bud_coden;
-            }
+            //$divCode=$db->Next_Record($resss);
+            //$div=$divCode["sh_code"];
+            //$bud_code1=substr($bud_code,0,5);
+            //print $bud_code1;
+            //$resss1=$db->Exe_Qry("SELECT COUNT(bud_code) FROM pc_bud_req_user WHERE bud_year='2017' && bud_code LIKE '{$bud_code1}%' && user=$empno;");
+            //$bud_codep=$db->Next_Record($resss1);
+            //if($bud_codep['COUNT(bud_code)']==0){
+            //  $count1=1;
+            // $bud_coden=$bud_code.'/'.$div.'/'.$bud_year1.'/'.$count1;
+            //  echo $bud_coden;
+            //  }
+            // else{
+            // $budcount=$bud_codep['COUNT(bud_code)'];
+            // $budcount=$budcount+1;
+            // $bud_coden=$bud_code.'/'.$div.'/'.$bud_year1.'/'.$budcount;
+            //$bud_coden=$bud_codep+1;
+            // echo $bud_coden;
+            // }
 
-            $db->Exe_Qry("UPDATE pc_bud_req_user SET  equ_detail='$equ_detail',purpose='$purpose',similar_equ='$similar_equ',reason='$reason', value='$value',target_month='$target_month',req_date='$req_date', bud_year='$bud_year', item_name_qty='$itemqty',bud_code='$bud_coden' WHERE br_no='$PrCodeLst'");
+            $db->Exe_Qry("UPDATE pc_bud_req_user SET  equ_detail='$equ_detail',purpose='$purpose',similar_equ='$similar_equ',reason='$reason', value='$value',target_month='$target_month',req_date='$req_date', bud_year='$bud_year', item_name_qty='$itemqty' WHERE br_no='$PrCodeLst'");
             echo '<script> alert("Record Successfully Updated");</script>';}
         else{ echo '<script> alert ("Fill the Form Properly");</script>';}
     }
@@ -266,7 +271,7 @@
             $value=$vallst['value'];
             $bud_year=$vallst['bud_year'];
             $target_month=$vallst['target_month'];
-            $bud_code=$vallst['bud_code'];
+            //$bud_code=$vallst['bud_code'];
 
 
 
@@ -299,6 +304,26 @@
 
     ?>
     <script language="javascript" src="jss/Js_Funcs.js">
+    </script>
+
+    <!--script type="text/javascript">
+function changetextbox()
+{
+    if (document.getElementById("PrCodeLst").value === "New") {
+        document.getElementById("txtbudgetcode").disable='false';
+    } else {
+        document.getElementById("txtbudgetcode").disable='true';
+    }
+}
+</script-->
+    <script>
+        var $PrCodeLst = $('#PrCodeLst').change(function() {
+            var isAll = $searchRegion.find('[value="New"]').is(':selected');
+            if (isAll) {
+                $PrCodeLst.val('New');
+            }
+            $searchRegion.find('txtbudgetcode').not('[value="all"]').prop('disabled', isAll);
+        })
     </script>
     <link href="css/Css_file.css" rel="stylesheet" type="text/css">
 </head>
@@ -396,14 +421,14 @@
             <tr>
                 <th align="left" >Budget Category</th>
                 <th>:</th>
-                <td><select id = "txtbudgetcode" name = "txtbudgetcode" disabled>
+                <td><select id = "txtbudgetcode" name = "txtbudgetcode">
 
 
                         <?php
 
 
                         $values =$db->Exe_Qry("SELECT Budg_descrip,budg_code FROM pc_budget_tbl");
-                        echo '<option value="New" disabled>--Select Budget Code--</option>';
+                        echo '<option value="New">--Select Budget Code--</option>';
 
                         while ($roww = $db->Next_Record($values))
                         {
@@ -417,91 +442,91 @@
                     </select>
                 </td></tr>
 
-                    <?php //echo "ll"; ?>
+            <?php //echo "ll"; ?>
 
-<tr>
-    <th align="left">Budget Year</th>
-    <th>:</th>
-    <td>
-        <select id = "txtyear" name = "txtyear">
-            <!-- <option value="<?php echo date('Y')-1; ?>"><?php echo date('Y')-1; ?></option>-->
-            <option value="<?php echo date('Y'); ?>"><?php echo date('Y'); ?></option>
-            <option value="<?php echo date('Y')+1; ?>"><?php echo date('Y')+1; ?></option>
-        </select>
-        <script>
-            document.getElementById('txtyear').value="<?php echo $bud_year;?>";
-        </script>
-
-
+            <tr>
+                <th align="left">Budget Year</th>
+                <th>:</th>
+                <td>
+                    <select id = "txtyear" name = "txtyear">
+                        <!-- <option value="<?php echo date('Y')-1; ?>"><?php echo date('Y')-1; ?></option>-->
+                        <option value="<?php echo date('Y'); ?>"><?php echo date('Y'); ?></option>
+                        <option value="<?php echo date('Y')+1; ?>"><?php echo date('Y')+1; ?></option>
+                    </select>
+                    <script>
+                        document.getElementById('txtyear').value="<?php echo $bud_year;?>";
+                    </script>
 
 
-    </td>
-</tr>
-
-<tr>
-    <th align="left">Name of the Item and Quantity</th>
-    <th>:</th>
-
-    <td><input type="text" name="itemqty" id="itemqty"  value="<?php echo $itemqty;?>" /></td>
-</tr>
 
 
-<tr>
-    <th align="left">Details of the Equipments</th>
-    <th>:</th>
-    <td><input type="text" name="equ_detail" id="equ_detail"  value="<?php echo $equ_detail;?>" /></td>
-</tr>
-<tr>
-    <th align="left">Purpose(If for any project,please indicate the name of the project)</th>
-    <th>:</th>
-    <td><textarea type="text" name="purpose" id="purpose"rows="4" cols="30"><?php echo $purpose;?></textarea> </td>
-</tr>
+                </td>
+            </tr>
 
-<tr>
-    <th align="left">Details of similar equipment already available</th>
-    <th>:</th>
-    <td><input type="text" name="similar_equ" id="similar_equ" Value="<?php echo $similar_equ;?>"/></td>
-</tr>
+            <tr>
+                <th align="left">Name of the Item and Quantity</th>
+                <th>:</th>
 
-<tr>
-    <th align="left">If similar equipment is already available,state the reason for the need for a new purchase</th>
-    <th>:</th>
-    <td><textarea type="text" name="reason" id="reason"  rows="4" cols="30"><?php echo $reason;?></textarea></td>
-</tr>
-
-<tr>
-    <th align="left">Approximate Value of the Equipments</th>
-    <th>:</th>
-    <td><input type="text" name="txtval" id="txtval" Value="<?php echo $value;?>"/></td>
-</tr>
+                <td><input type="text" name="itemqty" id="itemqty"  value="<?php echo $itemqty;?>" /></td>
+            </tr>
 
 
-<tr>
-    <th align="left">Target Month of purchase</th>
-    <th>:</th>
-    <td><select id ="txttarget_month" name="txttarget_month">
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-        </select>
-        <script> document.getElementById('txttarget_month').value="<?php echo $target_month;?>";</script>
-    </td>
-</tr>
+            <tr>
+                <th align="left">Details of the Equipments</th>
+                <th>:</th>
+                <td><input type="text" name="equ_detail" id="equ_detail"  value="<?php echo $equ_detail;?>" /></td>
+            </tr>
+            <tr>
+                <th align="left">Purpose(If for any project,please indicate the name of the project)</th>
+                <th>:</th>
+                <td><textarea type="text" name="purpose" id="purpose"rows="4" cols="30"><?php echo $purpose;?></textarea> </td>
+            </tr>
 
-<tr>
-    <th align="left">BR Date</th>
-    <th>:</th>
-    <td><?php $fncs->CrtCalender("req_date",$req_date,0);?></td>
-</tr>
+            <tr>
+                <th align="left">Details of similar equipment already available</th>
+                <th>:</th>
+                <td><input type="text" name="similar_equ" id="similar_equ" Value="<?php echo $similar_equ;?>"/></td>
+            </tr>
+
+            <tr>
+                <th align="left">If similar equipment is already available,state the reason for the need for a new purchase</th>
+                <th>:</th>
+                <td><textarea type="text" name="reason" id="reason"  rows="4" cols="30"><?php echo $reason;?></textarea></td>
+            </tr>
+
+            <tr>
+                <th align="left">Approximate Value of the Equipments</th>
+                <th>:</th>
+                <td><input type="text" name="txtval" id="txtval" Value="<?php echo $value;?>"/></td>
+            </tr>
+
+
+            <tr>
+                <th align="left">Target Month of purchase</th>
+                <th>:</th>
+                <td><select id ="txttarget_month" name="txttarget_month">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                    <script> document.getElementById('txttarget_month').value="<?php echo $target_month;?>";</script>
+                </td>
+            </tr>
+
+            <tr>
+                <th align="left">BR Date</th>
+                <th>:</th>
+                <td><?php $fncs->CrtCalender("req_date",$req_date,0);?></td>
+            </tr>
         </table>
 </div>
 <tr>
