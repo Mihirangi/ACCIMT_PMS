@@ -27,6 +27,12 @@
     {
         $PrCodeLst=$_POST['PrCodeLst'];
     }
+    else
+    {
+        $ress = $db->Exe_Qry("SELECT pr_no FROM pc_pr_dtls_tbl");
+        $PrCodeLst=($db->Row_Count($ress))+1;
+    }
+
     if (isset($_POST['Prdate']))
     {
         $Prdate=$_POST['Prdate'];
@@ -35,6 +41,8 @@
     {
         $Prdate="";
     }
+
+
 
     if (isset($_POST['name_officer']))
     {
@@ -74,20 +82,20 @@
 
     if (isset($_POST['divisionCode']))
     {
-        $divisionCode=$_POST['divisionCode'];
+        $division1=$_POST['divisionCode'];
     }
     else
     {
-        $divisionCode="";
+        $division1="";
 
     }
     if (isset($_POST['desigCode']))
     {
-        $desigCode=$_POST['desigCode'];
+        $desig1=$_POST['desigCode'];
     }
     else
     {
-        $desigCode="";
+        $desig1="";
     }
     if (isset($_POST['itemqty']))
     {
@@ -107,13 +115,13 @@
     }
 
 
-    if (isset($_POST['Quantity']))
+    if (isset($_POST['dtls_of_equipment']))
     {
-        $Quantity=$_POST['Quantity'];
+        $dtls_of_equipment=$_POST['dtls_of_equipment'];
     }
     else
     {
-        $Quantity="";
+        $dtls_of_equipment="";
     }
     if (isset($_POST['provision_des']))
     {
@@ -198,6 +206,7 @@
     if (isset($_POST['Pr_type']))
     {
         $Pr_type=$_POST['Pr_type'];
+
     }
     else
     {
@@ -223,20 +232,41 @@
 
             $name_officer=$vallst['Name_officer'];
             $Prdate=$vallst['pr_date'];
-
-            $Quantity=$vallst['quantity'];
+            $budg_code=$vallst['bud_code'];
+            $division1=$vallst['DivisionCode'];
+            $desig1=$vallst['DesigCode'];
+            $dtls_of_equipment=$vallst['quantity'];
             $purpose=$vallst['purpose'];
 
-            $Dtls_of_equipment=$vallst['dtls_of_equipment'];
+            $dtls_of_equipment=$vallst['Dtls_of_equipment'];
             $EstCost=$vallst['est_cost'];
             $AltReso=$vallst['alter_source'];
             $provision_des=$vallst['provision_des'];
             $SimItems=$vallst['simiar_item'];
             $PsEqi=$vallst['similar_des'];
+
+
             $Usage=$vallst['usage_no'];
+
+            /*$res_usage=$db->Exe_Qry("SELECT * FROM pc_usage_dtls_tbl WHERE usage_no='$Usage1'");
+
+
+
+             $vallst_u=$db->Next_Record($res_usage);
+             $Usage=$vallst_u['usg_descrip'];
+             print $Usage;*/
+
+
             $req_fulfill=$vallst['req_fulfill'];
             $target_month=$vallst['target_month'];
-            $pr_type_no=$vallst['Pr_type'];
+
+
+            $Pr_type=$vallst['pr_type_no'];
+            /*$res_prtype=$db->Exe_Qry("SELECT * FROM pc_pr_type WHERE pr_type_no='$pr_type_no1'");
+             $pr_type_no=$vallst_p['description'];*/
+
+
+            $vallst_p=$db->Next_Record($res_prtype);
             $pcode=$vallst['pro_code'];
 
 
@@ -287,8 +317,8 @@
             $resss=$db->Exe_Qry("SELECT DivisionCode FROM emp_details_tbl WHERE EmpNo='".$_SESSION['proclogin_un']."';");
             $divCode=$db->Next_Record($resss);
             $db->Exe_Qry("INSERT INTO pc_pr_dtls_tbl 
-	(pr_no, applicant,DivisionCode,Name_officer, pr_date,quantity,purpose,DesigCode,Dtls_of_equipment, est_cost,alter_source,provision_des, simiar_item, similar_des,usage_no,req_fulfill,target_month,pro_code, pr_type_no,ap_code) 
-	VALUES ('$PrCodeLst', '".$_SESSION['proclogin_un']."', '$divisionCode[0]', '$name_officer', '$Prdate','$Quantity','$purpose','$desigCode[0]','$dtls_of_equipment','$EstCost', '$AltReso','$provision_des', '$SimItems','$PsEqi','$Usage','$req_fulfill','$target_month','$pcode','$Pr_type','$apcode');");
+	(pr_no, applicant,DivisionCode,Name_officer, pr_date,purpose,Dtls_of_equipment, est_cost,alter_source,provision_des, simiar_item, similar_des,usage_no,req_fulfill,target_month,pro_code, pr_type_no,ap_code,bud_code) 
+	VALUES ('$PrCodeLst', '".$_SESSION['proclogin_un']."', '$division1', '$name_officer', '$Prdate','$purpose','$dtls_of_equipment','$EstCost', '$AltReso','$provision_des', '$SimItems','$PsEqi','$Usage','$req_fulfill','$target_month','$pcode','$Pr_type','$apcode','$budg_code');");
             echo '<script> alert("To Successfully add PR please add specification");</script>';
             $butOp=true;
         }
@@ -370,9 +400,12 @@
                             while ($roww = $db->Next_Record($ress))
                             {
                                 $division=$roww["Division"];
+                                $division1=$roww["DivisionCode"];
+
                             }?>
                             <td><input type="text" name="divisionCode" id="divisionCode" size="30" value="<?php echo $division;
                                 ?>" /></td>
+
                         </tr>
                         <tr>
                             <th align="left">Designation</th>
@@ -382,6 +415,7 @@
                             while ($roww = $db->Next_Record($ress))
                             {
                                 $desig=$roww["Designation"];
+                                $desig1=$roww["DesigCode"];
                             }?>
                             <td><input type="text" name="desigCode" id="desigCode" size="30" value="<?php echo $desig;
                                 ?>" /></td>
@@ -408,7 +442,7 @@
                         <tr>
                             <th align="left">Name of the Item and Quantity</th>
                             <th>:</th>
-                            <td><input type="text" name="dtls_of_equipment" id="dtls_of_equipment" size="30" value="<?php echo $itemqty;?>" /></td>
+                            <td><input type="text" name="dtls_of_equipment" id="dtls_of_equipment" size="30" value="<?php echo $dtls_of_equipment;?>" /></td>
                         </tr>
                         <tr>
                             <th align="left">Brief Description of Usage</th>
@@ -428,7 +462,7 @@
                         <tr>
                             <th align="left">Provision Description</th>
                             <th>:</th>
-                            <td><textarea type="text" name="provision_des" id="provision_des"rows="4" cols="30"> <?php echo $provision_des;?> </textarea> </td>
+                            <td><textarea type="text" name="provision_des" id="provision_des" rows="4" cols="30"> <?php echo $provision_des;?> </textarea> </td>
                         </tr>
                         <tr>
                             <th align="left">Similar Items available</th>
@@ -492,7 +526,8 @@
                                     echo "<OPTION VALUE=".$roww["usage_no"].">".$roww["usg_descrip"]."</OPTION>";
                                 }
                                 echo'</select>';
-                                ?> </td>
+                                ?>
+                                <script> document.getElementById('Usage').value="<?php echo $Usage;?>";</script> </td>
                         </tr>
 
 
@@ -510,16 +545,14 @@
                                     echo "<OPTION VALUE=".$roww["pr_type_no"].">".$roww["description"]."</OPTION>";
                                 }
                                 echo'</select>';
-                                ?></td>
+                                ?>
+                                <script> document.getElementById('Pr_type').value="<?php echo $Pr_type;?>";</script>
+                            </td>
                         </tr>
 
 
 
-                        <tr>
-                            <th align="left">AP code</th>
-                            <th>:</th>
-                            <td><input type="text" name="apcode" id="apcode" value="<?php echo $apcode;?>" /> </td>
-                        </tr>
+
 
 
                         <tr>
@@ -573,6 +606,30 @@
                             <td><input type="text" name="desc" id="desc" size="50" value="<?php echo $desc;?>" /> </td>
                         </tr>
 
+
+
+                        <tr>
+                            <th align="left">AP code</th>
+                            <th>:</th>
+
+                            <?php
+
+
+                            $query = mysql_query("SELECT apcode FROM pr_projects where code='$pcode';"); // Run your query
+
+                            //echo '<select class="form-control" name="activity_id" id="activity_id">'; // Open your drop down box
+
+                            // Loop through the query results, outputing the options one by one
+                            while ($row1 = mysql_fetch_array($query)) {
+                                //echo "<option value='$row1[0]' >$row1[0]</option>";
+                                //$row1[0];
+                                $apcode=$row1[0];
+                            }
+
+                            //echo $row1[0];// Close your drop down box
+                            ?>
+                            <td><input type="text" name="apcode" id="apcode" value="<?php echo $apcode;?>" /> </td>
+                        </tr>
                         <tr>
                             <td colspan="4"><table width="100%" border="0">
                                     <tr>
