@@ -450,13 +450,18 @@
                                     }
                                     ?>
 
-                                </select></td>
+                                </select>
+
+                            </td>
+
                         </tr>
                         <script>
                             document.getElementById('budCode').value="<?php echo $budg_code;?>";
                         </script>
 
 
+
+                        <td>  <?php echo $value; ?> </td>
 
                         <tr>
                             <th align="left">value</th>
