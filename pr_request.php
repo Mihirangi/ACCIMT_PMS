@@ -292,6 +292,22 @@
 
     }
 
+
+
+    if (isset($_POST['budCode']) && ($_POST['budCode'] != "--Please select a budget code--")){
+        $res=$db->Exe_Qry("SELECT * FROM pc_bud_req_user");
+        if ($db->Row_Count($res) == 1){
+            $vallst=$db->Next_Record($res);
+            $budg_code = $vallst['bud_code'];
+
+        }
+    }else if (isset($_POST['budCode']) && ($_POST['budCode'] != "new")){
+        $budg_code = "";
+
+
+
+    }
+
     /*if (isset($_POST['PrCodeLst']) && ($_POST['PrCodeLst'] = "new") )
     {
          $empno = $_SESSION['proclogin_un'];
@@ -439,6 +455,31 @@
                         <script>
                             document.getElementById('budCode').value="<?php echo $budg_code;?>";
                         </script>
+
+
+
+                        <tr>
+                            <th align="left">value</th>
+                            <th>:</th>
+                            <?php
+
+
+                            $query = mysql_query("SELECT value FROM pc_bud_req_user where bud_code='$budg_code';"); // Run your query
+
+                            //echo '<select class="form-control" name="activity_id" id="activity_id">'; // Open your drop down box
+
+                            // Loop through the query results, outputing the options one by one
+                            while ($row1 = mysql_fetch_array($query)) {
+                                //echo "<option value='$row1[0]' >$row1[0]</option>";
+                                //$row1[0];
+                                $value=$row1[0];
+                            }
+
+                            //echo $row1[0];// Close your drop down box
+                            ?>
+                            <td><input type="text" name="value" id="value" size="50" value="<?php echo $value;?>" /> </td>
+                        </tr>
+
                         <tr>
                             <th align="left">Name of the Item and Quantity</th>
                             <th>:</th>
